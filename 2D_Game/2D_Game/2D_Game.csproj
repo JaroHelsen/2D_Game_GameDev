@@ -41,7 +41,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Animations\Animation.cs" />
+    <Compile Include="Animations\AnimationFrame.cs" />
+    <Compile Include="Animations\AnimationMotion.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="MovingSprites\Hero.cs" />
+    <Compile Include="MovingSprites\Interfaces\IHero.cs" />
+    <Compile Include="MovingSprites\Sprite.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
