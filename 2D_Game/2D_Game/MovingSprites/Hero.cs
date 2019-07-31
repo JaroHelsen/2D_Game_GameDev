@@ -14,10 +14,9 @@ namespace _2D_Game.MovingSprites
 {
     public class Hero :  Sprite, IHero
     {
-        public BedieningPijltjes input;
-
-
+        #region Properties
         public bool HasJumped { get; set; }
+
         private Rectangle collisionRectangle;
 
         public Rectangle CollisionRectangle
@@ -25,19 +24,38 @@ namespace _2D_Game.MovingSprites
             get { return collisionRectangle; }
             set { collisionRectangle = value; }
         }
+
         public AnimationMotion HeroAnimation { get; set; }
 
-        #region Variabelen
-        private AnimationMotion runningRightAnimation;
-        private AnimationMotion runningLeftAnimation;
-        private AnimationMotion jumpingAnimation;
+        public int Health { get; set; }
+        #endregion
+
+        #region Variables
+        public BedieningPijltjes input;
+        private Vector2 relocator;
+
+        //Animations
+        private AnimationMotion _runningRightAnimation;
+        private AnimationMotion _runningLeftAnimation;
+        private AnimationMotion _jumpingAnimation;
         private Texture2D runningRightTexture;
         private Texture2D runningLeftTexture;
         private Texture2D jumpingTexture;
         #endregion
 
+        #region Constructor
+        /// <summary>
+        /// Creates and initalizes the hero.
+        /// Sprite textures are loaded in so we can have different animations and textures.
+        /// Animations are loaded in and given a AantalBewegingenPerSeconde.
+        /// The collisionrectangle is created using the position of the sprite and the texture.
+        /// Health has been set so that the player can die when it hits an enemy or jumps in the water.
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="_position"></param>
         public Hero(ContentManager content, Vector2 _position) : base(_position)
         {
+            relocator = _position;
             //Textures loaden
             SpriteTexture = content.Load<Texture2D>("Herosprites/Walking_right");
             runningRightTexture = content.Load<Texture2D>("HeroSprites/Walking_right");
@@ -47,37 +65,41 @@ namespace _2D_Game.MovingSprites
             //Animations loaden
             HeroAnimation = new AnimationMotion();
             HeroAnimation.AddAnimation(SpriteTexture, 4);
-            HeroAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 5;
+            HeroAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 2;
 
-            runningRightAnimation = new AnimationMotion();
-            runningRightAnimation.AddAnimation(runningRightTexture, 4);
-            runningRightAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 5;
-            runningLeftAnimation = new AnimationMotion();
-            runningLeftAnimation.AddAnimation(runningLeftTexture, 4);
-            runningLeftAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 5;
-            jumpingAnimation = new AnimationMotion();
-            jumpingAnimation.AddAnimation(jumpingTexture, 1);
-            jumpingAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 1;
+            _runningRightAnimation = new AnimationMotion();
+            _runningRightAnimation.AddAnimation(runningRightTexture, 4);
+            _runningRightAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 2;
+            _runningLeftAnimation = new AnimationMotion();
+            _runningLeftAnimation.AddAnimation(runningLeftTexture, 4);
+            _runningLeftAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 2;
+            _jumpingAnimation = new AnimationMotion();
+            _jumpingAnimation.AddAnimation(jumpingTexture, 1);
+            _jumpingAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 1;
 
             //CollisionRectangle loaden
             CollisionRectangle = new Rectangle((int)Position.X, (int)Position.Y, SpriteTexture.Width, SpriteTexture.Height / 4);
 
             //Make Hero fall to its position
             HasJumped = true;
-        }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(SpriteTexture, new Vector2((int)Position.X, (int)Position.Y + 27), HeroAnimation.CurrentAnimation.CurrentFrame.SourceRectangle, Color.AliceBlue, 0f, Vector2.Zero, 1f, goingLeft ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0.0f);
+            //Set Health for 100
+            Health = 100;
         }
+        #endregion
 
-        public void HasDied()
-        {
-            throw new NotImplementedException();
-        }
-
+        #region Methods
+        /// <summary>
+        /// Updates the hero position using the input variable which uses the arrow keys for movement.
+        /// Checks in which direction the user wants the hero to move and then edits the position accordingly.
+        /// Also checks if the player is going right or left, so that the jumping animation can be flipped accordingly in the Draw method.
+        /// Edits the collisionrectangle so that it is always in the right position.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
+            Console.WriteLine(Position);
+            Console.WriteLine("Hallo");
             input.Update();
             Position += Velocity;
             if (input.Left || input.Right || input.Jump)
@@ -100,8 +122,8 @@ namespace _2D_Game.MovingSprites
                 {
                     SpriteTexture = runningRightTexture;
 
-                    HeroAnimation = runningRightAnimation;
-                    runningRightAnimation.Update(gameTime);
+                    HeroAnimation = _runningRightAnimation;
+                    _runningRightAnimation.Update(gameTime);
                 }
 
             }
@@ -113,8 +135,8 @@ namespace _2D_Game.MovingSprites
                 HasJumped = true;
                 BootsOnTheGround = false;
                 SpriteTexture = jumpingTexture;
-                HeroAnimation = jumpingAnimation;
-                jumpingAnimation.Update(gameTime);
+                HeroAnimation = _jumpingAnimation;
+                _jumpingAnimation.Update(gameTime);
 
             }
             if (HasJumped)
@@ -132,6 +154,30 @@ namespace _2D_Game.MovingSprites
 
             collisionRectangle.X = (int)Position.X;
             collisionRectangle.Y = (int)Position.Y;
+
         }
+
+        /// <summary>
+        /// Draws the hero using the spriteBatch.Draw method.
+        /// Flips the image if the hero is going left.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            //spriteBatch.Draw(HeroTexture, CollisionRectangle, Color.AliceBlue);
+            spriteBatch.Draw(SpriteTexture, new Vector2((int)Position.X, (int)Position.Y + 27), HeroAnimation.CurrentAnimation.CurrentFrame.SourceRectangle, Color.AliceBlue, 0f, Vector2.Zero, 1f, goingLeft ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0.0f);
+        }
+
+        /// <summary>
+        /// Resets the health and then relocates to the last starting position.
+        /// </summary>
+        public void HasDied()
+        {
+            Health = 100;
+            Position = relocator;
+            goingLeft = false;
+            SpriteTexture = runningRightTexture;
+        }
+        #endregion
     }
 }

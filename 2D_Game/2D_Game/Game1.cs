@@ -1,4 +1,6 @@
-﻿using _2D_Game.LevelDesign;
+﻿using _2D_Game.CoreClasses;
+using _2D_Game.LevelDesign;
+using _2D_Game.MovingSprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -13,6 +15,9 @@ namespace _2D_Game
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Hero hero;
+        Camera camera;
+
         public static int screenWidth;
         public static int screenHeight;
 
@@ -20,6 +25,16 @@ namespace _2D_Game
         private Rectangle mainFrame;
 
         LevelFactory level;
+
+        enum GameState
+        {
+            StartMenu,
+            Controls,
+            Loading,
+            Playing,
+            Paused
+        }
+        GameState gameState;
 
         public Game1()
         {

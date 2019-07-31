@@ -14,59 +14,25 @@ namespace _2D_Game.LevelDesign
 {
     class LevelFactory
     {
-        ContentManager content;
-        Collision collisionChecker;
+        //ContentManager content;
+        protected Collision collisionChecker;
         public Hero thisHero;
+        public Enemies enemy;
         public Texture2D GroundTexture { get; set; }
         public Texture2D CrateTexture { get; set; }
-        private byte[,] tileArray = new byte[,]
-        {
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,1,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,1,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,1,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-            {0,0,0,0,0,0,1,1},
-        };
+        protected byte[,] tileArray;
 
-        private Blok[,] blokArray;
+        protected Blok[,] blokArray;
 
-        public LevelFactory(ContentManager _content)
+        public LevelFactory(Hero myHero)
         {
-            content = _content;
-            thisHero = new Hero(_content, new Vector2(50, 100));
-            thisHero.input = new BedieningPijltjes();
-            GroundTexture = content.Load<Texture2D>("png/Tile/2");
-            CrateTexture = content.Load<Texture2D>("Objects/Crate");
-            blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
-            collisionChecker = new Collision(thisHero, blokArray);
+            //content = _content;
+            thisHero = myHero;
+            //blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
+            //collisionChecker = new Collision(thisHero, blokArray);
         }
 
-        public void CreateLevel()
+        public void CreateLevel(ContentManager content)
         {
             for (int i = 0; i < tileArray.GetLength(0); i++)
             {
@@ -74,12 +40,24 @@ namespace _2D_Game.LevelDesign
                 {
                     if (tileArray[i, j] == 1)
                     {
-                        blokArray[i, j] = new Blok(GroundTexture, new Vector2(128 * i, 128 * j));
+                        blokArray[i, j] = new Blok(content.Load<Texture2D>("Tile/5"), new Vector2(128 * i, 128 * j));
+                        blokArray[i, j].Id = 1;
                     }
                     else if (tileArray[i, j] == 2)
                     {
-                        blokArray[i, j] = new Blok(CrateTexture, new Vector2(128 * i, 128 * j));
+                        blokArray[i, j] = new Blok(content.Load<Texture2D>("Tile/2"), new Vector2(128 * i, 128 * j));
+                        blokArray[i, j].Id = 1;
                     }
+                    else if (tileArray[i, j] == 3)
+                    {
+                        blokArray[i, j] = new Blok(content.Load<Texture2D>("water"), new Vector2(128 * i, 128 * j));
+                        blokArray[i, j].Id = 3;
+                    }
+                    //else if (tileArray[i, j] == 25)
+                    //{
+                    //    blokArray[i, j] = new Blok(content.Load<Texture2D>("Objects/Crate"), new Vector2(128 * i, 128 * j));
+                    //    blokArray[i, j].Id = 25;
+                    //}
                     else
                     {
                         blokArray[i, j] = null;
