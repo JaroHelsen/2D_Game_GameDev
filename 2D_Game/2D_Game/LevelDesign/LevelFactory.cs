@@ -40,17 +40,17 @@ namespace _2D_Game.LevelDesign
                 {
                     if (tileArray[i, j] == 1)
                     {
-                        blokArray[i, j] = new Blok(content.Load<Texture2D>("Tile/5"), new Vector2(128 * i, 128 * j));
+                        blokArray[i, j] = new Blok(content.Load<Texture2D>("png/Tile/5"), new Vector2(128 * i, 128 * j));
                         blokArray[i, j].Id = 1;
                     }
                     else if (tileArray[i, j] == 2)
                     {
-                        blokArray[i, j] = new Blok(content.Load<Texture2D>("Tile/2"), new Vector2(128 * i, 128 * j));
+                        blokArray[i, j] = new Blok(content.Load<Texture2D>("png/Tile/2"), new Vector2(128 * i, 128 * j));
                         blokArray[i, j].Id = 1;
                     }
                     else if (tileArray[i, j] == 3)
                     {
-                        blokArray[i, j] = new Blok(content.Load<Texture2D>("water"), new Vector2(128 * i, 128 * j));
+                        blokArray[i, j] = new Blok(content.Load<Texture2D>("png/water"), new Vector2(128 * i, 128 * j));
                         blokArray[i, j].Id = 3;
                     }
                     //else if (tileArray[i, j] == 25)
