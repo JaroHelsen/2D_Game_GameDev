@@ -44,7 +44,12 @@
     <Compile Include="Animations\Animation.cs" />
     <Compile Include="Animations\AnimationFrame.cs" />
     <Compile Include="Animations\AnimationMotion.cs" />
+    <Compile Include="Component.cs" />
+    <Compile Include="Controls\Button.cs" />
+    <Compile Include="Controls\Controls.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="LevelDesign\Blok.cs" />
+    <Compile Include="Main\Collision.cs" />
     <Compile Include="MovingSprites\Hero.cs" />
     <Compile Include="MovingSprites\Interfaces\IHero.cs" />
     <Compile Include="MovingSprites\Sprite.cs" />

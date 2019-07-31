@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _2D_Game.LevelDesign;
+using _2D_Game.MovingSprites;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
