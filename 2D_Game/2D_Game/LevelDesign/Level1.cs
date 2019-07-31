@@ -21,7 +21,7 @@ namespace _2D_Game.LevelDesign
         /// <param name="myHero"></param>
         public Level1(ContentManager _content, Hero myHero) : base(myHero)
         {
-            enemy = new Enemies(new Vector2(100, 100), _content.Load<Texture2D>("Jumping"));
+            enemy = new Enemies(new Vector2(100, 100), _content.Load<Texture2D>("HeroSprites/Jumping"));
             enemy.BootsOnTheGround = true;
             tileArray = new byte[,]
             {

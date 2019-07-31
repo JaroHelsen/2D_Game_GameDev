@@ -1,4 +1,5 @@
-﻿using _2D_Game.CoreClasses;
+﻿using _2D_Game.Controls;
+using _2D_Game.CoreClasses;
 using _2D_Game.LevelDesign;
 using _2D_Game.MovingSprites;
 using Microsoft.Xna.Framework;
@@ -70,9 +71,9 @@ namespace _2D_Game
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            hero = new Hero(Content, new Vector2(178, 100));
+            hero.input = new BedieningPijltjes();
 
-
-            //currentState = new MenuState(this, graphics.GraphicsDevice, Content);
             myBackground = Content.Load<Texture2D>("png/BG");
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 

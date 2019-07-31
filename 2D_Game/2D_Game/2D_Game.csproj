@@ -47,10 +47,13 @@
     <Compile Include="Component.cs" />
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\Controls.cs" />
+    <Compile Include="CoreClasses\Camera.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="LevelDesign\Blok.cs" />
+    <Compile Include="LevelDesign\Level1.cs" />
     <Compile Include="LevelDesign\LevelFactory.cs" />
-    <Compile Include="Main\Collision.cs" />
+    <Compile Include="CoreClasses\Collision.cs" />
+    <Compile Include="MovingSprites\Enemies.cs" />
     <Compile Include="MovingSprites\Hero.cs" />
     <Compile Include="MovingSprites\Interfaces\IHero.cs" />
     <Compile Include="MovingSprites\Sprite.cs" />

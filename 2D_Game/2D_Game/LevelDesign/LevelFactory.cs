@@ -82,9 +82,9 @@ namespace _2D_Game.LevelDesign
             thisHero.Draw(spriteBatch);
         }
 
-        public void CheckForCollision(GameTime gameTime)
+        public void CheckForCollision(GameTime gameTime, Hero hero)
         {
-            thisHero.Update(gameTime);
+            hero.Update(gameTime);
             collisionChecker.CheckCollision();
         }
     }
