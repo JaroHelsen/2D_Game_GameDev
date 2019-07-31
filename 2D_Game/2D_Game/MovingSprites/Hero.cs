@@ -26,8 +26,7 @@ namespace _2D_Game.MovingSprites
         }
 
         public AnimationMotion HeroAnimation { get; set; }
-
-        public int Health { get; set; }
+        
         #endregion
 
         #region Variables
