@@ -61,7 +61,7 @@
 /processorParam:TextureFormat=Color
 /build:HeroSprites/Walking_right.png
 
-#begin png/Objects/Bush (1).png
+#begin Objects/Bush (1).png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -71,9 +71,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Bush (1).png
+/build:Objects/Bush (1).png
 
-#begin png/Objects/Bush (2).png
+#begin Objects/Bush (2).png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -83,9 +83,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Bush (2).png
+/build:Objects/Bush (2).png
 
-#begin png/Objects/Cactus (1).png
+#begin Objects/Cactus (1).png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -95,9 +95,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Cactus (1).png
+/build:Objects/Cactus (1).png
 
-#begin png/Objects/Cactus (2).png
+#begin Objects/Cactus (2).png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -107,9 +107,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Cactus (2).png
+/build:Objects/Cactus (2).png
 
-#begin png/Objects/Cactus (3).png
+#begin Objects/Cactus (3).png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -119,9 +119,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Cactus (3).png
+/build:Objects/Cactus (3).png
 
-#begin png/Objects/Crate.png
+#begin Objects/Crate.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -131,9 +131,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Crate.png
+/build:Objects/Crate.png
 
-#begin png/Objects/Grass (1).png
+#begin Objects/Grass (1).png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -143,9 +143,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Grass (1).png
+/build:Objects/Grass (1).png
 
-#begin png/Objects/Grass (2).png
+#begin Objects/Grass (2).png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -155,9 +155,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Grass (2).png
+/build:Objects/Grass (2).png
 
-#begin png/Objects/Sign.png
+#begin Objects/Sign.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -167,9 +167,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Sign.png
+/build:Objects/Sign.png
 
-#begin png/Objects/SignArrow.png
+#begin Objects/SignArrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -179,9 +179,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/SignArrow.png
+/build:Objects/SignArrow.png
 
-#begin png/Objects/Skeleton.png
+#begin Objects/Skeleton.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -191,9 +191,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Skeleton.png
+/build:Objects/Skeleton.png
 
-#begin png/Objects/Stone.png
+#begin Objects/Stone.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -203,9 +203,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Stone.png
+/build:Objects/Stone.png
 
-#begin png/Objects/StoneBlock.png
+#begin Objects/StoneBlock.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -215,9 +215,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/StoneBlock.png
+/build:Objects/StoneBlock.png
 
-#begin png/Objects/Tree.png
+#begin Objects/Tree.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -227,7 +227,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:png/Objects/Tree.png
+/build:Objects/Tree.png
 
 #begin png/Tile/1.png
 /importer:TextureImporter
@@ -432,11 +432,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:png/BG.png
-
-#begin png/Tile.zip
-/importer:
-/processor:
-/build:png/Tile.zip
 
 #begin png/water.png
 /importer:TextureImporter

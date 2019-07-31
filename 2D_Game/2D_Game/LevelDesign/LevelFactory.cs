@@ -60,7 +60,7 @@ namespace _2D_Game.LevelDesign
             content = _content;
             thisHero = new Hero(_content, new Vector2(50, 100));
             thisHero.input = new BedieningPijltjes();
-            GroundTexture = content.Load<Texture2D>("Tile/2");
+            GroundTexture = content.Load<Texture2D>("png/Tile/2");
             CrateTexture = content.Load<Texture2D>("Objects/Crate");
             blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
             collisionChecker = new Collision(thisHero, blokArray);

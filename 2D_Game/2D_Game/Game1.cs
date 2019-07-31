@@ -58,7 +58,7 @@ namespace _2D_Game
 
 
             //currentState = new MenuState(this, graphics.GraphicsDevice, Content);
-            myBackground = Content.Load<Texture2D>("BG");
+            myBackground = Content.Load<Texture2D>("png/BG");
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
             level = new LevelFactory(Content);
