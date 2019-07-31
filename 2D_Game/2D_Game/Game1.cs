@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using _2D_Game.LevelDesign;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -12,9 +13,20 @@ namespace _2D_Game
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        public static int screenWidth;
+        public static int screenHeight;
+
+        private Texture2D myBackground;
+        private Rectangle mainFrame;
+
+        LevelFactory level;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 1500;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 1000;   // set this value to the desired height of your window
+            graphics.ApplyChanges();
             Content.RootDirectory = "Content";
         }
 
@@ -26,7 +38,10 @@ namespace _2D_Game
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            IsMouseVisible = true;
+
+            screenHeight = graphics.PreferredBackBufferHeight;
+            screenWidth = graphics.PreferredBackBufferWidth;
 
             base.Initialize();
         }
@@ -40,7 +55,14 @@ namespace _2D_Game
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+
+
+            //currentState = new MenuState(this, graphics.GraphicsDevice, Content);
+            myBackground = Content.Load<Texture2D>("BG");
+            mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
+            level = new LevelFactory(Content);
+            level.CreateLevel();
         }
 
         /// <summary>
@@ -62,8 +84,15 @@ namespace _2D_Game
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            //if (nextState != null)
+            //{
+            //    currentState = nextState;
+            //    nextState = null;
 
+            //}
+            //currentState.Update(gameTime, spriteBatch);
+            //currentState.PostUpdate(gameTime);
+            level.CheckForCollision(gameTime);
             base.Update(gameTime);
         }
 
@@ -76,7 +105,12 @@ namespace _2D_Game
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(myBackground, mainFrame, Color.AliceBlue);
+            level.DrawWorld(spriteBatch);
 
+            spriteBatch.End();
+            //currentState.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
         }
     }
