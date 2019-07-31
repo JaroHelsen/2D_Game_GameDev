@@ -9,6 +9,9 @@ namespace _2D_Game.Animations
 {
     public class AnimationFrame
     {
+        /// <summary>
+        /// Creates a SourceRectangle for all AnimationFrame objects.
+        /// </summary>
         public Rectangle SourceRectangle { get; set; }
     }
 }
