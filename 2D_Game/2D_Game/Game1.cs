@@ -24,7 +24,7 @@ namespace _2D_Game
         private Texture2D myBackground;
         private Rectangle mainFrame;
 
-        LevelFactory level;
+        Level1 level;
 
         enum GameState
         {
@@ -76,8 +76,10 @@ namespace _2D_Game
             myBackground = Content.Load<Texture2D>("png/BG");
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
-            level = new LevelFactory(Content);
-            level.CreateLevel();
+            level = new Level1(Content, hero);
+            level.CreateLevel(Content);
+
+            camera = new Camera();
         }
 
         /// <summary>
@@ -107,7 +109,9 @@ namespace _2D_Game
             //}
             //currentState.Update(gameTime, spriteBatch);
             //currentState.PostUpdate(gameTime);
-            level.CheckForCollision(gameTime);
+            hero.Update(gameTime);
+            level.CheckForCollision(gameTime, hero);
+            camera.Follow(hero.Position);
             base.Update(gameTime);
         }
 
@@ -119,10 +123,14 @@ namespace _2D_Game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             spriteBatch.Begin();
             spriteBatch.Draw(myBackground, mainFrame, Color.AliceBlue);
+            spriteBatch.End();
+
+            spriteBatch.Begin(transformMatrix: camera.Transform);
+
             level.DrawWorld(spriteBatch);
+            hero.Draw(spriteBatch);
 
             spriteBatch.End();
             //currentState.Draw(gameTime, spriteBatch);
