@@ -38,6 +38,14 @@ namespace _2D_Game.MovingSprites
             Velocity = new Vector2(3, 0);
             goingLeft = false;
         }
+
+        public Sprite(Vector2 _position, Vector2 _velocity, bool _goingLeft)
+        {
+            //Variable declaration
+            Position = _position;
+            Velocity = _velocity;
+            goingLeft = _goingLeft;
+        }
         #endregion
 
         #region Methods

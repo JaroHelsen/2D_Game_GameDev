@@ -114,7 +114,7 @@ namespace _2D_Game
             //currentState.Update(gameTime, spriteBatch);
             //currentState.PostUpdate(gameTime);
             hero.Update(gameTime);
-            enemy.Update();
+            enemy.Update(gameTime);
             level.CheckForCollision(gameTime, hero);
             camera.Follow(hero.Position);
             base.Update(gameTime);

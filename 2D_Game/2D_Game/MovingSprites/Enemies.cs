@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace _2D_Game.MovingSprites
 {
-    class Enemies //: Sprite
+    class Enemies: Sprite
     {
+
+        private Rectangle collisionRectangle;
+
+        public Rectangle CollisionRectangle
+        {
+            get { return collisionRectangle; }
+            set { collisionRectangle = value; }
+        }
 
         Texture2D texture;
         Rectangle rectangle;
@@ -19,19 +27,22 @@ namespace _2D_Game.MovingSprites
 
         bool right;
         float distance, oldDistance;
-        public Enemies(Texture2D _texture, Vector2 _position, float _distance)
+        public Enemies(Texture2D _texture, Vector2 _position, float _distance):base(_position)
         {
-            texture = _texture;
+            SpriteTexture = _texture;
             position = _position;
             distance = _distance;
 
             oldDistance = distance;
+
+
+            CollisionRectangle = new Rectangle((int)Position.X, (int)Position.Y, SpriteTexture.Width, SpriteTexture.Height / 4);
         }
 
-        public void Update()
+        public override void Update(GameTime gameTime)
         {
-            position += velocity;
-            origin = new Vector2(texture.Width / 2, texture.Height / 2);
+            Position += velocity;
+            origin = new Vector2(SpriteTexture.Width / 2, SpriteTexture.Height / 2);
 
             if (distance <= 0)
             {
@@ -54,15 +65,15 @@ namespace _2D_Game.MovingSprites
             }
         }
 
-        public void Draw(SpriteBatch sprite)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (velocity.X > 0)
             {
-                sprite.Draw(texture, position, null, Color.White, rotation, origin, 1f, SpriteEffects.FlipHorizontally, 0f);
+                spriteBatch.Draw(SpriteTexture, Position, null, Color.White, rotation, origin, 1f, SpriteEffects.FlipHorizontally, 0f);
             }
             else
             {
-                sprite.Draw(texture, position, null, Color.White, rotation, origin, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(SpriteTexture, Position, null, Color.White, rotation, origin, 1f, SpriteEffects.None, 0f);
             }
         }
         //public bool isVisible = false;
