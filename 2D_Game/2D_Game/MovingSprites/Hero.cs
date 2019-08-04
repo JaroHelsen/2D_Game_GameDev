@@ -100,7 +100,7 @@ namespace _2D_Game.MovingSprites
             Console.WriteLine(Position);
             Console.WriteLine("Hallo");
             input.Update();
-            Position += Velocity;
+            Position.Y += Velocity.Y;
             if (input.Left || input.Right || input.Jump)
             {
                 HeroAnimation.Update(gameTime);
@@ -109,12 +109,12 @@ namespace _2D_Game.MovingSprites
             {
                 if (input.Right)
                 {
-                    Position.X += XVelocity.X;
+                    Position.X += Velocity.X;
                     goingLeft = false;
                 }
                 else if (input.Left)
                 {
-                    Position.X -= XVelocity.X;
+                    Position.X -= Velocity.X;
                     goingLeft = true;
                 }
                 if (HasJumped == false)

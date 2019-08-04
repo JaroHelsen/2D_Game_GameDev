@@ -21,7 +21,6 @@ namespace _2D_Game.MovingSprites
         #region Variables
         public Vector2 Position;
         public Vector2 Velocity;
-        public Vector2 XVelocity;
         public bool goingLeft;
         #endregion
 
@@ -36,7 +35,7 @@ namespace _2D_Game.MovingSprites
         {
             //Variable declaration
             Position = _position;
-            XVelocity = new Vector2(3, 0);
+            Velocity = new Vector2(3, 0);
             goingLeft = false;
         }
         #endregion
