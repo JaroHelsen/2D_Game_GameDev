@@ -16,6 +16,15 @@ namespace _2D_Game.MovingSprites
         public bool BootsOnTheGround { get; set; }
 
         public int Health { get; set; }
+        public bool HasJumped { get; set; }
+
+        protected Rectangle collisionRectangle;
+
+        public Rectangle CollisionRectangle
+        {
+            get { return collisionRectangle; }
+            set { collisionRectangle = value; }
+        }
         #endregion
 
         #region Variables

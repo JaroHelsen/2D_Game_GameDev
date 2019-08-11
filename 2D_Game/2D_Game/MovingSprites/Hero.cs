@@ -15,15 +15,15 @@ namespace _2D_Game.MovingSprites
     public class Hero :  Sprite, IHero
     {
         #region Properties
-        public bool HasJumped { get; set; }
+        //public bool HasJumped { get; set; }
 
-        private Rectangle collisionRectangle;
+        //private Rectangle collisionRectangle;
 
-        public Rectangle CollisionRectangle
-        {
-            get { return collisionRectangle; }
-            set { collisionRectangle = value; }
-        }
+        //public Rectangle CollisionRectangle
+        //{
+        //    get { return collisionRectangle; }
+        //    set { collisionRectangle = value; }
+        //}
 
         public AnimationMotion HeroAnimation { get; set; }
         

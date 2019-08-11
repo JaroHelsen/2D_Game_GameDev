@@ -35,6 +35,9 @@ namespace _2D_Game.MovingSprites
 
             oldDistance = distance;
 
+            Health = 10;
+            HasJumped = true;
+
 
             CollisionRectangle = new Rectangle((int)Position.X, (int)Position.Y, SpriteTexture.Width, SpriteTexture.Height / 4);
         }
@@ -63,6 +66,22 @@ namespace _2D_Game.MovingSprites
             {
                 distance -= 1;
             }
+
+            if (HasJumped)
+            {
+                Console.WriteLine("hasjump");
+                float i = 1;
+                Velocity.Y += 0.15f * i;
+            }
+            if (BootsOnTheGround)
+            {
+                Console.WriteLine("boots");
+                HasJumped = false;
+                Velocity.Y = 0f;
+            }
+
+            collisionRectangle.X = (int)Position.X;
+            collisionRectangle.Y = (int)Position.Y;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
