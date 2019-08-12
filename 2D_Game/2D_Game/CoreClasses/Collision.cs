@@ -13,7 +13,7 @@ namespace _2D_Game.Main
         #region Variables
         Blok[,] blokken;
         Hero thisHero;
-        Enemies enemy;
+        Enemies[] enemies;
 
         public bool xMovement = false;
         public bool onPlat = false;
@@ -23,12 +23,12 @@ namespace _2D_Game.Main
         #endregion
 
         #region Constructor
-        public Collision(Hero _hero, Blok[,] blokArray, Enemies _enemy)
+        public Collision(Hero _hero, Blok[,] blokArray, Enemies[] _enemy)
         {
             thisHero = _hero;
             game = new Game1();
             blokken = blokArray;
-            enemy = _enemy;
+            enemies = _enemy;
         }
         #endregion
 
@@ -132,74 +132,78 @@ namespace _2D_Game.Main
 
         public void EnemyCollisionCheck()
         {
-            Console.WriteLine("enemy check?");
-            Console.WriteLine(enemy.HasJumped);
-            onPlat = false;
-            Auwch = false;
-            foreach (Blok blok in blokken)
+            foreach (Enemies enemy in enemies)
             {
-
-                xMovement = false;
-                if (blok != null)
+                Console.WriteLine("enemy check?");
+                Console.WriteLine(enemy.HasJumped);
+                onPlat = false;
+                Auwch = false;
+                foreach (Blok blok in blokken)
                 {
-                    if (blok.Id != 3 && blok.Id != 25)
+
+                    xMovement = false;
+                    if (blok != null)
                     {
-                        blok.OnPLatform = false;
-                        //Check for collision from the left side of the hero(thus he is walking to the left)
-                        if (enemy.CollisionRectangle.Left + enemy.Velocity.X < blok.CollisionRectangle.Right && enemy.CollisionRectangle.Right > blok.CollisionRectangle.Right && enemy.CollisionRectangle.Bottom < blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Bottom > blok.CollisionRectangle.Top)// && thisHero.input.Left == true)
+                        if (blok.Id != 3 && blok.Id != 25)
+                        {
+                            blok.OnPLatform = false;
+                            //Check for collision from the left side of the hero(thus he is walking to the left)
+                            if (enemy.CollisionRectangle.Left + enemy.Velocity.X < blok.CollisionRectangle.Right && enemy.CollisionRectangle.Right > blok.CollisionRectangle.Right && enemy.CollisionRectangle.Bottom < blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Bottom > blok.CollisionRectangle.Top)// && thisHero.input.Left == true)
                             {
                                 enemy.Position.X += 6;
                                 xMovement = true;
                             }
-                        //Check for collision from the right side of the hero (thus he is walking to the right)
-                        if (enemy.CollisionRectangle.Right + enemy.Velocity.X > blok.CollisionRectangle.Left && enemy.CollisionRectangle.Left < blok.CollisionRectangle.Left && enemy.CollisionRectangle.Bottom < blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Bottom > blok.CollisionRectangle.Top)// && thisHero.input.Right == true)
-                        {
-                            enemy.Position.X -= 6;
-                            xMovement = true;
-                        }
-                        //Check for collision with hero and a blok underneath it
-                        if (enemy.CollisionRectangle.Bottom + 25 >= blok.CollisionRectangle.Top && enemy.CollisionRectangle.Top < blok.CollisionRectangle.Top && ((enemy.CollisionRectangle.Left + 15 >= blok.CollisionRectangle.Left && enemy.CollisionRectangle.Left + 15 <= blok.CollisionRectangle.Right) || (enemy.CollisionRectangle.Right - 15 >= blok.CollisionRectangle.Left && enemy.CollisionRectangle.Right - 15 <= blok.CollisionRectangle.Right)))
-                        {
-                            enemy.Position.Y = blok.CollisionRectangle.Top - enemy.CollisionRectangle.Height - 20;
-                            blok.OnPLatform = true;
-                        }
-                        //Check for collision betweenhero and blok on top of it
-                        if (enemy.CollisionRectangle.Top + enemy.Velocity.Y < blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Bottom > blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Right > blok.CollisionRectangle.Left && enemy.CollisionRectangle.Left < blok.CollisionRectangle.Right && enemy.HasJumped == true)
+                            //Check for collision from the right side of the hero (thus he is walking to the right)
+                            if (enemy.CollisionRectangle.Right + enemy.Velocity.X > blok.CollisionRectangle.Left && enemy.CollisionRectangle.Left < blok.CollisionRectangle.Left && enemy.CollisionRectangle.Bottom < blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Bottom > blok.CollisionRectangle.Top)// && thisHero.input.Right == true)
+                            {
+                                enemy.Position.X -= 6;
+                                xMovement = true;
+                            }
+                            //Check for collision with hero and a blok underneath it
+                            if (enemy.CollisionRectangle.Bottom + 25 >= blok.CollisionRectangle.Top && enemy.CollisionRectangle.Top < blok.CollisionRectangle.Top && ((enemy.CollisionRectangle.Left + 15 >= blok.CollisionRectangle.Left && enemy.CollisionRectangle.Left + 15 <= blok.CollisionRectangle.Right) || (enemy.CollisionRectangle.Right - 15 >= blok.CollisionRectangle.Left && enemy.CollisionRectangle.Right - 15 <= blok.CollisionRectangle.Right)))
+                            {
+                                enemy.Position.Y = blok.CollisionRectangle.Top - enemy.CollisionRectangle.Height - 20;
+                                blok.OnPLatform = true;
+                            }
+                            //Check for collision betweenhero and blok on top of it
+                            if (enemy.CollisionRectangle.Top + enemy.Velocity.Y < blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Bottom > blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Right > blok.CollisionRectangle.Left && enemy.CollisionRectangle.Left < blok.CollisionRectangle.Right && enemy.HasJumped == true)
                             {
                                 enemy.Position.Y -= enemy.Velocity.Y - 3;
                             }
-                    }
-                    else if (blok.Id == 3)
-                    {
-                        if (enemy.CollisionRectangle.Intersects(blok.CollisionRectangle))
+                        }
+                        else if (blok.Id == 3)
                         {
+                            if (enemy.CollisionRectangle.Intersects(blok.CollisionRectangle))
+                            {
+                                blok.OnPLatform = false;
+                                Auwch = true;
+                            }
+                        }
+
+                    }
+                }
+                foreach (Blok blok in blokken)
+                {
+                    if (blok != null)
+                    {
+                        if (blok.OnPLatform)
+                        {
+                            Console.WriteLine("grond enemy");
+                            enemy.BootsOnTheGround = true;
+                            onPlat = true;
                             blok.OnPLatform = false;
-                            Auwch = true;
                         }
                     }
 
                 }
-            }
-            foreach (Blok blok in blokken)
-            {
-                if (blok != null)
+                if (!onPlat)
                 {
-                    if (blok.OnPLatform)
-                    {
-                        Console.WriteLine("grond enemy");
-                        enemy.BootsOnTheGround = true;
-                        onPlat = true;
-                        blok.OnPLatform = false;
-                    }
+                    enemy.HasJumped = true;
+                    enemy.BootsOnTheGround = false;
+                    Console.WriteLine("onplat enemy");
                 }
-
             }
-            if (!onPlat)
-            {
-                enemy.HasJumped = true;
-                enemy.BootsOnTheGround = false;
-                Console.WriteLine("onplat enemy");
-            }
+            
         }
         #endregion
     }

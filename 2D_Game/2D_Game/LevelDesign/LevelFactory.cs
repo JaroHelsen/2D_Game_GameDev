@@ -17,7 +17,7 @@ namespace _2D_Game.LevelDesign
         //ContentManager content;
         protected Collision collisionChecker;
         public Hero thisHero;
-        public Enemies enemy;
+        public Enemies[] enemies = new Enemies[2];
         public Texture2D GroundTexture { get; set; }
         public Texture2D CrateTexture { get; set; }
         protected byte[,] tileArray;
@@ -78,14 +78,22 @@ namespace _2D_Game.LevelDesign
                     }
                 }
             }
-            enemy.Draw(spriteBatch);
+            foreach (Enemies enemy in enemies)
+            {
+                enemy.Draw(spriteBatch);
+            }
+            
             //thisHero.Draw(spriteBatch);
         }
 
-        public void CheckForCollision(GameTime gameTime, Hero hero, Enemies enemies)
+        public void CheckForCollision(GameTime gameTime, Hero hero, Enemies _enemies)
         {
             hero.Update(gameTime);
-            enemy.Update(gameTime);
+            foreach (Enemies enemy in enemies)
+            {
+                enemy.Update(gameTime);
+            }
+            
             collisionChecker.CheckCollision();
             collisionChecker.EnemyCollisionCheck();
         }
