@@ -75,7 +75,6 @@ namespace _2D_Game
             hero = new Hero(Content, new Vector2(178, 100));
             hero.input = new BedieningPijltjes();
 
-            enemy = new Enemies(Content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(200, 100), 150);
 
             myBackground = Content.Load<Texture2D>("png/BG");
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
@@ -114,7 +113,7 @@ namespace _2D_Game
             //currentState.Update(gameTime, spriteBatch);
             //currentState.PostUpdate(gameTime);
             hero.Update(gameTime);
-            enemy.Update(gameTime);
+            //enemy.Update(gameTime);
             level.CheckForCollision(gameTime, hero, enemy);
             camera.Follow(hero.Position);
             base.Update(gameTime);
@@ -135,7 +134,7 @@ namespace _2D_Game
             spriteBatch.Begin(transformMatrix: camera.Transform);
 
             level.DrawWorld(spriteBatch);
-            enemy.Draw(spriteBatch);
+            //enemy.Draw(spriteBatch);
             hero.Draw(spriteBatch);
 
             spriteBatch.End();

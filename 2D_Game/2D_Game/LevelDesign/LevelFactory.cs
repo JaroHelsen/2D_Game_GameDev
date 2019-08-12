@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace _2D_Game.LevelDesign
 {
-    class LevelFactory
+    abstract class LevelFactory
     {
         //ContentManager content;
         protected Collision collisionChecker;
@@ -78,14 +78,14 @@ namespace _2D_Game.LevelDesign
                     }
                 }
             }
-
+            enemy.Draw(spriteBatch);
             //thisHero.Draw(spriteBatch);
         }
 
         public void CheckForCollision(GameTime gameTime, Hero hero, Enemies enemies)
         {
             hero.Update(gameTime);
-            enemies.Update(gameTime);
+            enemy.Update(gameTime);
             collisionChecker.CheckCollision();
             collisionChecker.EnemyCollisionCheck();
         }

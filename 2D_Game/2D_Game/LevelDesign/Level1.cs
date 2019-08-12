@@ -21,6 +21,9 @@ namespace _2D_Game.LevelDesign
         /// <param name="myHero"></param>
         public Level1(ContentManager _content, Hero myHero, Enemies enemies) : base(myHero)
         {
+
+            enemy = new Enemies(_content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(200, 100), 150);
+
             tileArray = new byte[,]
             {
                 {2,1,1,1,1,1,1,1},
@@ -133,7 +136,7 @@ namespace _2D_Game.LevelDesign
             };
 
             blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
-            collisionChecker = new Collision(thisHero, blokArray, enemies);
+            collisionChecker = new Collision(thisHero, blokArray, enemy);
         }
     }
 }
