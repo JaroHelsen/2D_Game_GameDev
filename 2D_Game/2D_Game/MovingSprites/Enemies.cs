@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using _2D_Game.Animations;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,10 @@ namespace _2D_Game.MovingSprites
         //    set { collisionRectangle = value; }
         //}
 
-        Texture2D texture;
-        Rectangle rectangle;
-        Vector2 position;
+        //Texture2D texture;
+        //Rectangle rectangle;
+        //Vector2 position;
+        public AnimationMotion HeroAnimation { get; set; }
         Vector2 origin, velocity;
         float rotation = 0f;
 
@@ -30,7 +32,7 @@ namespace _2D_Game.MovingSprites
         public Enemies(Texture2D _texture, Vector2 _position, float _distance):base(_position)
         {
             SpriteTexture = _texture;
-            position = _position;
+            //position = _position;
             distance = _distance;
 
             oldDistance = distance;
@@ -38,24 +40,30 @@ namespace _2D_Game.MovingSprites
             Health = 10;
             HasJumped = true;
 
+            //Animations loaden
+            HeroAnimation = new AnimationMotion();
+            HeroAnimation.AddAnimation(SpriteTexture, 4);
+            HeroAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 2;
+
 
             CollisionRectangle = new Rectangle((int)Position.X, (int)Position.Y, SpriteTexture.Width, SpriteTexture.Height / 4);
         }
 
         public override void Update(GameTime gameTime)
         {
-            Position += velocity;
+            Position += Velocity;
             origin = new Vector2(SpriteTexture.Width / 2, SpriteTexture.Height / 2);
+            HeroAnimation.Update(gameTime);
 
             if (distance <= 0)
             {
                 right = true;
-                velocity.X = 1f;
+                Velocity.X = 1f;
             }
             else if(distance >= oldDistance)
             {
                 right = false;
-                velocity.X = -1f;
+                Velocity.X = -1f;
             }
 
             if (right)
@@ -66,10 +74,9 @@ namespace _2D_Game.MovingSprites
             {
                 distance -= 1;
             }
-
             if (HasJumped)
             {
-                Console.WriteLine("hasjump");
+                Console.WriteLine("hasjumpeded");
                 float i = 1;
                 Velocity.Y += 0.15f * i;
             }

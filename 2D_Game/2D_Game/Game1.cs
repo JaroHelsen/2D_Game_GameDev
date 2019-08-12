@@ -80,7 +80,7 @@ namespace _2D_Game
             myBackground = Content.Load<Texture2D>("png/BG");
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
-            level = new Level1(Content, hero);
+            level = new Level1(Content, hero, enemy);
             level.CreateLevel(Content);
 
             camera = new Camera();
@@ -115,7 +115,7 @@ namespace _2D_Game
             //currentState.PostUpdate(gameTime);
             hero.Update(gameTime);
             enemy.Update(gameTime);
-            level.CheckForCollision(gameTime, hero);
+            level.CheckForCollision(gameTime, hero, enemy);
             camera.Follow(hero.Position);
             base.Update(gameTime);
         }
