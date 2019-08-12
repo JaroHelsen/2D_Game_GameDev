@@ -11,20 +11,8 @@ namespace _2D_Game.MovingSprites
 {
     class Enemies: Sprite
     {
-
-        //private Rectangle collisionRectangle;
-
-        //public Rectangle CollisionRectangle
-        //{
-        //    get { return collisionRectangle; }
-        //    set { collisionRectangle = value; }
-        //}
-
-        //Texture2D texture;
-        //Rectangle rectangle;
-        //Vector2 position;
         public AnimationMotion HeroAnimation { get; set; }
-        Vector2 origin, velocity;
+        Vector2 origin;
         float rotation = 0f;
 
         bool right;
@@ -93,7 +81,7 @@ namespace _2D_Game.MovingSprites
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (velocity.X > 0)
+            if (Velocity.X > 0)
             {
                 spriteBatch.Draw(SpriteTexture, Position, null, Color.White, rotation, origin, 1f, SpriteEffects.FlipHorizontally, 0f);
             }
