@@ -43,7 +43,7 @@ namespace _2D_Game.Main
         /// </summary>
         public void CheckCollision()
         {
-            Console.WriteLine("word ik opgeroepen?");
+            //Console.WriteLine("word ik opgeroepen?");
             onPlat = false;
             Auwch = false;
             //thisHero.BootsOnTheGround = false;
@@ -104,7 +104,7 @@ namespace _2D_Game.Main
                 {
                     if (blok.OnPLatform)
                     {
-                        Console.WriteLine("grond");
+                        //Console.WriteLine("grond");
                         thisHero.BootsOnTheGround = true;
                         onPlat = true;
                         blok.OnPLatform = false;
@@ -112,11 +112,19 @@ namespace _2D_Game.Main
                 }
 
             }
+            foreach (Enemies enemy in enemies)
+            {
+                if (thisHero.CollisionRectangle.Intersects(enemy.CollisionRectangle))
+                {
+                    Console.WriteLine("HELP IK BEN GERAAKT");
+                    Auwch = true;
+                }
+            }
             if (!onPlat)
             {
                 thisHero.HasJumped = true;
                 thisHero.BootsOnTheGround = false;
-                Console.WriteLine("onplat");
+                //Console.WriteLine("onplat");
             }
             if (Auwch)
             {
@@ -134,7 +142,7 @@ namespace _2D_Game.Main
         {
             foreach (Enemies enemy in enemies)
             {
-                Console.WriteLine("enemy check?");
+                //Console.WriteLine("enemy check?");
                 Console.WriteLine(enemy.HasJumped);
                 onPlat = false;
                 Auwch = false;
@@ -188,7 +196,7 @@ namespace _2D_Game.Main
                     {
                         if (blok.OnPLatform)
                         {
-                            Console.WriteLine("grond enemy");
+                            //Console.WriteLine("grond enemy");
                             enemy.BootsOnTheGround = true;
                             onPlat = true;
                             blok.OnPLatform = false;
@@ -200,7 +208,7 @@ namespace _2D_Game.Main
                 {
                     enemy.HasJumped = true;
                     enemy.BootsOnTheGround = false;
-                    Console.WriteLine("onplat enemy");
+                    //Console.WriteLine("onplat enemy");
                 }
             }
             
