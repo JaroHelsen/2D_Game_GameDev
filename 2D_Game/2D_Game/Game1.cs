@@ -170,6 +170,7 @@ namespace _2D_Game
                     spriteBatch.End();
                     break;
                 case GameState.GameOver:
+                    //Zelfde als voor de menu state
                     break;
                 default:
                     break;
