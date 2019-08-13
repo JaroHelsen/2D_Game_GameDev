@@ -23,20 +23,19 @@ namespace _2D_Game
         public static int screenWidth;
         public static int screenHeight;
 
-        private Texture2D myBackground;
+        private Texture2D myBackground, menuImage;
         private Rectangle mainFrame;
 
         Level1 level;
 
-        enum GameState
+        //GameStates
+        public enum GameState
         {
-            StartMenu,
-            Controls,
-            Loading,
+            Menu,
             Playing,
-            Paused
+            GameOver
         }
-        GameState gameState;
+        GameState gameState = GameState.Menu;
 
         public Game1()
         {
@@ -45,6 +44,7 @@ namespace _2D_Game
             graphics.PreferredBackBufferHeight = 1000;   // set this value to the desired height of your window
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
+            menuImage = null;
         }
 
         /// <summary>
@@ -79,6 +79,8 @@ namespace _2D_Game
             myBackground = Content.Load<Texture2D>("png/BG");
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
+            menuImage = Content.Load<Texture2D>("Objects/Crate");
+
             level = new Level1(Content, hero, enemy);
             level.CreateLevel(Content);
 
@@ -104,6 +106,29 @@ namespace _2D_Game
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            //Updating state
+            switch (gameState)
+            {
+                case GameState.Menu:
+                    //Get keyboard state
+                    KeyboardState keyState = Keyboard.GetState();
+                    if (keyState.IsKeyDown(Keys.Enter))
+                    {
+                        gameState = GameState.Playing;
+                        //Hier dingen zetten die nu moeten laden (slechts 1x)
+                    }
+                    break;
+                case GameState.Playing:
+                    hero.Update(gameTime);
+                    level.CheckForCollision(gameTime, hero, enemy);
+                    camera.Follow(hero.Position);
+                    break;
+                case GameState.GameOver:
+                    break;
+                default:
+                    break;
+            }
+
             //if (nextState != null)
             //{
             //    currentState = nextState;
@@ -112,10 +137,6 @@ namespace _2D_Game
             //}
             //currentState.Update(gameTime, spriteBatch);
             //currentState.PostUpdate(gameTime);
-            hero.Update(gameTime);
-            //enemy.Update(gameTime);
-            level.CheckForCollision(gameTime, hero, enemy);
-            camera.Follow(hero.Position);
             base.Update(gameTime);
         }
 
@@ -130,14 +151,31 @@ namespace _2D_Game
             spriteBatch.Begin();
             spriteBatch.Draw(myBackground, mainFrame, Color.AliceBlue);
             spriteBatch.End();
+            switch (gameState)
+            {
+                case GameState.Menu:
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(menuImage, new Rectangle(200, 100, 300, 300), Color.Beige);
+                    spriteBatch.End();
+                    break;
+                case GameState.Playing:
 
-            spriteBatch.Begin(transformMatrix: camera.Transform);
 
-            level.DrawWorld(spriteBatch);
-            //enemy.Draw(spriteBatch);
-            hero.Draw(spriteBatch);
+                    spriteBatch.Begin(transformMatrix: camera.Transform);
 
-            spriteBatch.End();
+                    level.DrawWorld(spriteBatch);
+                    //enemy.Draw(spriteBatch);
+                    hero.Draw(spriteBatch);
+
+                    spriteBatch.End();
+                    break;
+                case GameState.GameOver:
+                    break;
+                default:
+                    break;
+            }
+
+            
             //currentState.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
         }
