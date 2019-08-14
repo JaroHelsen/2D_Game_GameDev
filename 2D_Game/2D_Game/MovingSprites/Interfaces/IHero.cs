@@ -14,7 +14,9 @@ namespace _2D_Game.MovingSprites.Interfaces
         /// <summary>
         /// Properties are found here.
         /// </summary>
+        int TimesDied { get; set; }
         Boolean HasJumped { get; set; }
+        Boolean TooManyDeaths { get; set; }
         Rectangle CollisionRectangle { get; set; }
 
         AnimationMotion HeroAnimation { get; set; }

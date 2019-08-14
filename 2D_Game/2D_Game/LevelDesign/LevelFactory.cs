@@ -54,11 +54,11 @@ namespace _2D_Game.LevelDesign
                         blokArray[i, j] = new Blok(content.Load<Texture2D>("png/water"), new Vector2(128 * i, 128 * j));
                         blokArray[i, j].Id = 3;
                     }
-                    //else if (tileArray[i, j] == 25)
-                    //{
-                    //    blokArray[i, j] = new Blok(content.Load<Texture2D>("Objects/Crate"), new Vector2(128 * i, 128 * j));
-                    //    blokArray[i, j].Id = 25;
-                    //}
+                    else if (tileArray[i, j] == 25)
+                    {
+                        blokArray[i, j] = new Blok(content.Load<Texture2D>("Objects/Crate"), new Vector2(128 * i, 128 * j));
+                        blokArray[i, j].Id = 25;
+                    }
                     else
                     {
                         blokArray[i, j] = null;

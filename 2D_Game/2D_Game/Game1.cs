@@ -123,10 +123,16 @@ namespace _2D_Game
                     hero.Update(gameTime);
                     level.CheckForCollision(gameTime, hero, enemy);
                     camera.Follow(hero.Position);
+                    if (hero.TooManyDeaths)
+                    {
+                        gameState = GameState.GameOver;
+                        hero.TimesDied = 0;
+                        hero.TooManyDeaths = false;
+                    }
                     break;
                 case GameState.GameOver:
                     keyState = Keyboard.GetState();
-                    if (keyState.IsKeyDown(Keys.Enter))
+                    if (keyState.IsKeyDown(Keys.D))
                     {
                         gameState = GameState.Menu;
                         //Hier dingen zetten die nu moeten laden (slechts 1x)

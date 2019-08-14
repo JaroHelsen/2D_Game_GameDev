@@ -16,7 +16,9 @@ namespace _2D_Game.MovingSprites
     {
         #region Properties
         public AnimationMotion HeroAnimation { get; set; }
-        
+        public int TimesDied { get; set; }
+        public Boolean TooManyDeaths { get; set; }
+
         #endregion
 
         #region Variables
@@ -74,6 +76,8 @@ namespace _2D_Game.MovingSprites
 
             //Set Health for 100
             Health = 100;
+            TimesDied = 0;
+            TooManyDeaths = false;
         }
         #endregion
 
@@ -162,10 +166,19 @@ namespace _2D_Game.MovingSprites
         /// </summary>
         public void HasDied()
         {
-            Health = 100;
-            Position = relocator;
-            goingLeft = false;
-            SpriteTexture = runningRightTexture;
+            //TimesDied += 1;
+            if (TimesDied >= 3)
+            {
+                TooManyDeaths = true;
+            }
+            else
+            {
+                Health = 100;
+                Position = relocator;
+                goingLeft = false;
+                SpriteTexture = runningRightTexture;
+            }
+            
         }
         #endregion
     }
