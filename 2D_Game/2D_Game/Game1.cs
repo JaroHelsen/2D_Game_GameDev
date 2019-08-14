@@ -26,7 +26,7 @@ namespace _2D_Game
         private Texture2D myBackground, menuImage;
         private Rectangle mainFrame;
 
-        Level1 level;
+        LevelFactory level;
 
         //GameStates
         public enum GameState
@@ -36,7 +36,6 @@ namespace _2D_Game
             GameOver
         }
         GameState gameState = GameState.Menu;
-        KeyboardState keyState;
 
         public Game1()
         {
