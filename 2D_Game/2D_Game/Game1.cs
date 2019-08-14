@@ -36,6 +36,7 @@ namespace _2D_Game
             GameOver
         }
         GameState gameState = GameState.Menu;
+        KeyboardState keyState;
 
         public Game1()
         {
@@ -105,13 +106,14 @@ namespace _2D_Game
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            KeyboardState keyState;
 
             //Updating state
             switch (gameState)
             {
                 case GameState.Menu:
                     //Get keyboard state
-                    KeyboardState keyState = Keyboard.GetState();
+                    keyState = Keyboard.GetState();
                     if (keyState.IsKeyDown(Keys.Enter))
                     {
                         gameState = GameState.Playing;
@@ -124,6 +126,12 @@ namespace _2D_Game
                     camera.Follow(hero.Position);
                     break;
                 case GameState.GameOver:
+                    keyState = Keyboard.GetState();
+                    if (keyState.IsKeyDown(Keys.Enter))
+                    {
+                        gameState = GameState.Menu;
+                        //Hier dingen zetten die nu moeten laden (slechts 1x)
+                    }
                     break;
                 default:
                     break;
