@@ -25,13 +25,13 @@ namespace _2D_Game.LevelDesign
 
         protected Blok[,] blokArray;
 
-        public LevelFactory(Hero myHero)
-        {
-            //content = _content;
-            thisHero = myHero;
-            //blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
-            //collisionChecker = new Collision(thisHero, blokArray);
-        }
+        //public LevelFactory(Hero myHero)
+        //{
+        //    //content = _content;
+        //    //thisHero = myHero;
+        //    //blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
+        //    collisionChecker = new Collision(myHero, blokArray, enemies);
+        //}
 
         public void CreateLevel(ContentManager content)
         {

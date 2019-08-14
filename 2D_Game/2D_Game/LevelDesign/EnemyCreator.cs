@@ -13,14 +13,14 @@ namespace _2D_Game.LevelDesign
     {
         public Enemies[] GeneratedEnemies { get; set; }
         private Random rand;
-        public Enemies[] GenerateEnemies(int aantal, Texture2D texture, Vector2 position)
+        public Enemies[] GenerateEnemies(int aantal, Texture2D texture, Vector2 position, int randomMax)
         {
             rand = new Random();
             GeneratedEnemies = new Enemies[aantal];
             
             for (int i = 0; i < aantal; i++)
             {
-                position.X = rand.Next(100, 500);
+                position.X = rand.Next(100, randomMax);
                 GeneratedEnemies[i] = new Enemies(texture, position, 150);
             }
             return GeneratedEnemies;

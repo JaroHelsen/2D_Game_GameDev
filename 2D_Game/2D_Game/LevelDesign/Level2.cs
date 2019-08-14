@@ -5,14 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using _2D_Game.Main;
 using _2D_Game.MovingSprites;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace _2D_Game.LevelDesign
 {
     class Level2 : LevelFactory
     {
-        public Level2(Hero myHero) : base(myHero)
+        public Level2(ContentManager _content, Hero myHero, Enemies _enemies) //: base(myHero)
         {
 
+            enemies = enemyCreator.GenerateEnemies(2, _content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(0, 100), 5000);
             tileArray = new byte[,]
             {
                 {2,1,1,1,1,1,1,1},

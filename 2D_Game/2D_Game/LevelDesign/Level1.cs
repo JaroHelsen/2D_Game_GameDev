@@ -19,9 +19,9 @@ namespace _2D_Game.LevelDesign
         /// </summary>
         /// <param name="_content"></param>
         /// <param name="myHero"></param>
-        public Level1(ContentManager _content, Hero myHero, Enemies _enemies) : base(myHero)
+        public Level1(ContentManager _content, Hero myHero, Enemies _enemies) //: base(myHero)
         {
-            enemies = enemyCreator.GenerateEnemies(2, _content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(0, 100));
+            enemies = enemyCreator.GenerateEnemies(2, _content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(0, 100), 5000);
 
             tileArray = new byte[,]
             {
@@ -135,7 +135,7 @@ namespace _2D_Game.LevelDesign
             };
 
             blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
-            collisionChecker = new Collision(thisHero, blokArray, enemies);
+            collisionChecker = new Collision(myHero, blokArray, enemies);
         }
     }
 }
