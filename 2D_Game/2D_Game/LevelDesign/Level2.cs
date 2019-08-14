@@ -1,27 +1,17 @@
-﻿using _2D_Game.Main;
-using _2D_Game.MovingSprites;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using _2D_Game.Main;
+using _2D_Game.MovingSprites;
 
 namespace _2D_Game.LevelDesign
 {
-    class Level1: LevelFactory
+    class Level2 : LevelFactory
     {
-        /// <summary>
-        /// Constructor for the level 1.
-        /// The tilearray is there so we can create the level with the create- and drawworld methods from the abstract level class
-        /// </summary>
-        /// <param name="_content"></param>
-        /// <param name="myHero"></param>
-        public Level1(ContentManager _content, Hero myHero, Enemies _enemies) : base(myHero)
+        public Level2(Hero myHero) : base(myHero)
         {
-            enemies = enemyCreator.GenerateEnemies(2, _content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(0, 100));
 
             tileArray = new byte[,]
             {

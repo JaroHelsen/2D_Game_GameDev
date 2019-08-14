@@ -18,6 +18,7 @@ namespace _2D_Game.LevelDesign
         protected Collision collisionChecker;
         public Hero thisHero;
         public Enemies[] enemies = new Enemies[2];
+        protected EnemyCreator enemyCreator = new EnemyCreator();
         public Texture2D GroundTexture { get; set; }
         public Texture2D CrateTexture { get; set; }
         protected byte[,] tileArray;

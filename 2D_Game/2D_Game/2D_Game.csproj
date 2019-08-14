@@ -50,7 +50,9 @@
     <Compile Include="CoreClasses\Camera.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="LevelDesign\Blok.cs" />
+    <Compile Include="LevelDesign\EnemyCreator.cs" />
     <Compile Include="LevelDesign\Level1.cs" />
+    <Compile Include="LevelDesign\Level2.cs" />
     <Compile Include="LevelDesign\LevelFactory.cs" />
     <Compile Include="CoreClasses\Collision.cs" />
     <Compile Include="MovingSprites\Enemies.cs" />

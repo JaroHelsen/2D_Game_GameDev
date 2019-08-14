@@ -21,7 +21,7 @@ namespace _2D_Game.MovingSprites
         {
             SpriteTexture = _texture;
             //position = _position;
-            distance = _distance;
+            distance = 300;
 
             oldDistance = distance;
 
