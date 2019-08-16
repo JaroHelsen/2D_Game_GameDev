@@ -134,6 +134,7 @@ namespace _2D_Game
                     camera.Follow(hero.Position);
                     if (level1.LevelEnd)
                     {
+                        level2.ReturnEnemiesToPlaces();
                         hero.TimesDied = 0;
                         hero.Relocate();
                         gameState = GameState.level2;
@@ -167,6 +168,7 @@ namespace _2D_Game
                     keyState = Keyboard.GetState();
                     if (keyState.IsKeyDown(Keys.R))
                     {
+                        level1.ReturnEnemiesToPlaces();
                         gameState = GameState.level1;
                     }
                     if (keyState.IsKeyDown(Keys.M))
@@ -179,6 +181,7 @@ namespace _2D_Game
                     keyState = Keyboard.GetState();
                     if (keyState.IsKeyDown(Keys.R))
                     {
+                        level1.ReturnEnemiesToPlaces();
                         gameState = GameState.level1;
                     }
                     if (keyState.IsKeyDown(Keys.M))

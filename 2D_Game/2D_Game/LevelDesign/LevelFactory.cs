@@ -108,7 +108,7 @@ namespace _2D_Game.LevelDesign
             {
                 if (enemies[i].Health == 0)
                 {
-                    enemies.RemoveAt(i);
+                    enemies[i].Position.X = -1000;
                 }
             }
             foreach (Blok blok in blokArray)
@@ -130,5 +130,12 @@ namespace _2D_Game.LevelDesign
         }
 
         public abstract void CreateEnemies(ContentManager content);
+        public void ReturnEnemiesToPlaces()
+        {
+            foreach (Enemies enemy in enemies)
+            {
+                enemy.Relocate();
+            }
+        }
     }
 }

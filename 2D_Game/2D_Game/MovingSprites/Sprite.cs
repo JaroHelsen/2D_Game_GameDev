@@ -31,6 +31,7 @@ namespace _2D_Game.MovingSprites
         public Vector2 Position;
         public Vector2 Velocity;
         public bool goingLeft;
+        protected Vector2 relocator;
         #endregion
 
         #region Constructor
@@ -66,6 +67,7 @@ namespace _2D_Game.MovingSprites
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(SpriteBatch spriteBatch);
         public abstract void HasDied();
+        public abstract void Relocate();
         #endregion
     }
 }

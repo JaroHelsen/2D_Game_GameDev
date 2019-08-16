@@ -23,7 +23,6 @@ namespace _2D_Game.MovingSprites
 
         #region Variables
         public BedieningPijltjes input;
-        private Vector2 relocator;
 
         //Animations
         private AnimationMotion _runningRightAnimation;
@@ -184,7 +183,7 @@ namespace _2D_Game.MovingSprites
 
         }
 
-        public void Relocate()
+        public override void Relocate()
         {
             Position = relocator;
             goingLeft = false;

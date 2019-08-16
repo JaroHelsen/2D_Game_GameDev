@@ -21,11 +21,5 @@ namespace _2D_Game.MovingSprites.Interfaces
 
         AnimationMotion HeroAnimation { get; set; }
         #endregion
-
-        //#region Methods
-        //void HasDied();
-        void Relocate();
-        //#endregion
-
     }
 }

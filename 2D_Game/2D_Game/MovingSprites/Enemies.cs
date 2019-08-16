@@ -95,5 +95,11 @@ namespace _2D_Game.MovingSprites
         {
             Health = 0;
         }
+
+        public override void Relocate()
+        {
+            Position = relocator;
+            goingLeft = false;
+        }
     }
 }
