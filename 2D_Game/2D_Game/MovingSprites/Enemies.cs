@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _2D_Game.MovingSprites
 {
-    class Enemies: Sprite
+    public class Enemies: Sprite
     {
         public AnimationMotion HeroAnimation { get; set; }
         Vector2 origin;

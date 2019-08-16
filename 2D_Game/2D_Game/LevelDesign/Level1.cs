@@ -1,4 +1,5 @@
-﻿using _2D_Game.Main;
+﻿using _2D_Game.CoreClasses;
+using _2D_Game.Main;
 using _2D_Game.MovingSprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -23,7 +24,7 @@ namespace _2D_Game.LevelDesign
         {
             enemies = new List<Enemies>();
             enemies = enemyCreator.GenerateEnemies(2, _content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(0, 100), 5000);
-            enemies.Add(new Enemies(_content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(300, 150), 500));
+            enemies.Add(new Enemies(_content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(300, -500), 500));
 
             tileArray = new byte[,]
             {
@@ -137,7 +138,8 @@ namespace _2D_Game.LevelDesign
             };
 
             blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
-            collisionChecker = new Collision(myHero, blokArray, enemies);
+            heroCollisionChecker = new HeroCollision(myHero, blokArray, enemies);
+            enemyCollisionChecker = new EnemyCollision(blokArray, enemies);
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace _2D_Game.LevelDesign
 {
-    class Blok
+    public class Blok
     {
         #region Properties
         public bool onCheck = true;

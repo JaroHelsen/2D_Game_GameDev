@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using _2D_Game.CoreClasses;
 using _2D_Game.Main;
 using _2D_Game.MovingSprites;
 using Microsoft.Xna.Framework;
@@ -129,7 +130,8 @@ namespace _2D_Game.LevelDesign
             };
 
             blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
-            collisionChecker = new Collision(thisHero, blokArray, enemies);
+            heroCollisionChecker = new HeroCollision(myHero, blokArray, enemies);
+            enemyCollisionChecker = new EnemyCollision(blokArray, enemies);
         }
     }
 }

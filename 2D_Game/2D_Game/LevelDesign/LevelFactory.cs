@@ -15,7 +15,7 @@ namespace _2D_Game.LevelDesign
     abstract class LevelFactory
     {
         //ContentManager content;
-        protected Collision collisionChecker;
+        protected Collision heroCollisionChecker, enemyCollisionChecker;
         public Hero thisHero;
         public List<Enemies> enemies;
         protected EnemyCreator enemyCreator = new EnemyCreator();
@@ -94,9 +94,9 @@ namespace _2D_Game.LevelDesign
             {
                 enemy.Update(gameTime);
             }
-            
-            collisionChecker.CheckCollision();
-            collisionChecker.EnemyCollisionCheck();
+
+            heroCollisionChecker.CheckCollision();
+            enemyCollisionChecker.CheckCollision();
 
             for (int i = enemies.Count -  1 ; i >= 0 ; i--)
             {

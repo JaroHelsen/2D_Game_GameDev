@@ -48,6 +48,8 @@
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\Controls.cs" />
     <Compile Include="CoreClasses\Camera.cs" />
+    <Compile Include="CoreClasses\EnemyCollision.cs" />
+    <Compile Include="CoreClasses\HeroCollision.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="LevelDesign\Blok.cs" />
     <Compile Include="LevelDesign\EnemyCreator.cs" />
