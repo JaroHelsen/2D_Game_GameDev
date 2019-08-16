@@ -15,6 +15,7 @@ namespace _2D_Game.LevelDesign
         public Vector2 Position { get; set; }
         public bool OnPLatform { get; set; }
         public Texture2D Texture { get; set; }
+        public Boolean FinishLine { get; set; }
         private Rectangle collisionRectangle;
 
         public Rectangle CollisionRectangle
@@ -39,6 +40,7 @@ namespace _2D_Game.LevelDesign
             Texture = _texture;
             CollisionRectangle = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
             OnPLatform = false;
+            FinishLine = false;
         }
         #endregion
 

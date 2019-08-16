@@ -25,7 +25,6 @@ namespace _2D_Game.LevelDesign
             enemies = new List<Enemies>();
             enemies = enemyCreator.GenerateEnemies(2, _content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(0, 100), 5000);
             enemies.Add(new Enemies(_content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(300, -500), 500));
-
             tileArray = new byte[,]
             {
                 {2,1,1,1,1,1,1,1},

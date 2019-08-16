@@ -62,13 +62,14 @@ namespace _2D_Game.CoreClasses
                             Auwch = true;
                         }
                     }
-                    //else if (blok.Id == 25)
-                    //{
-                    //    if (thisHero.CollisionRectangle.Intersects(blok.CollisionRectangle))
-                    //    {
-                    //        game.Exit();
-                    //    }
-                    //}
+                    else if (blok.Id == 25)
+                    {
+                        if (thisHero.CollisionRectangle.Intersects(blok.CollisionRectangle))
+                        {
+                            blok.FinishLine = true;
+                            Console.WriteLine("Da werkt?");
+                        }
+                    }
 
                 }
             }

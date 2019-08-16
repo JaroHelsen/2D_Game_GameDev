@@ -21,17 +21,15 @@ namespace _2D_Game.LevelDesign
         protected EnemyCreator enemyCreator = new EnemyCreator();
         public Texture2D GroundTexture { get; set; }
         public Texture2D CrateTexture { get; set; }
+        public Boolean LevelEnd { get; set; }
         protected byte[,] tileArray;
 
         protected Blok[,] blokArray;
 
-        //public LevelFactory(Hero myHero)
-        //{
-        //    //content = _content;
-        //    //thisHero = myHero;
-        //    //blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
-        //    collisionChecker = new Collision(myHero, blokArray, enemies);
-        //}
+        public LevelFactory()
+        {
+            LevelEnd = false;
+        }
 
         public void CreateLevel(ContentManager content)
         {
@@ -65,6 +63,14 @@ namespace _2D_Game.LevelDesign
                     }
                 }
             }
+        }
+
+        public void DestroyLevel()
+        {
+            Array.Clear(blokArray, 0, blokArray.Length);
+            Array.Clear(tileArray, 0, tileArray.Length);
+            enemies.Clear();
+
         }
 
         public void DrawWorld(SpriteBatch spriteBatch)
@@ -104,6 +110,20 @@ namespace _2D_Game.LevelDesign
                 {
                     enemies.RemoveAt(i);
                 }
+            }
+            foreach (Blok blok in blokArray)
+            {
+                if (blok != null)
+                {
+                    if (blok.FinishLine)
+                    {
+                        Console.WriteLine("This is the end");
+                        Console.WriteLine("-------------------------------------------------------------------------");
+                        Console.WriteLine("");
+                        LevelEnd = true;
+                    }
+                }
+                
             }
         }
     }

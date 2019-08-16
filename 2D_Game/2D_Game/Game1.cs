@@ -26,13 +26,14 @@ namespace _2D_Game
         private Texture2D myBackground, menuImage;
         private Rectangle mainFrame;
 
-        LevelFactory level;
+        LevelFactory level1, level2;
 
         //GameStates
         public enum GameState
         {
             Menu,
-            Playing,
+            level1,
+            level2,
             GameOver
         }
         GameState gameState = GameState.Menu;
@@ -81,8 +82,11 @@ namespace _2D_Game
 
             menuImage = Content.Load<Texture2D>("Objects/Crate");
 
-            level = new Level1(Content, hero, enemy);
-            level.CreateLevel(Content);
+            level1 = new Level1(Content, hero, enemy);
+            level1.CreateLevel(Content);
+
+            level2 = new Level2(Content, hero, enemy);
+            level2.CreateLevel(Content);
 
             camera = new Camera();
         }
@@ -115,13 +119,34 @@ namespace _2D_Game
                     keyState = Keyboard.GetState();
                     if (keyState.IsKeyDown(Keys.Enter))
                     {
-                        gameState = GameState.Playing;
+                        hero.TimesDied = 0;
+                        hero.Relocate();
+                        gameState = GameState.level1;
                         //Hier dingen zetten die nu moeten laden (slechts 1x)
                     }
                     break;
-                case GameState.Playing:
+                case GameState.level1:
                     hero.Update(gameTime);
-                    level.CheckForCollision(gameTime, hero, enemy);
+                    level1.CheckForCollision(gameTime, hero, enemy);
+                    camera.Follow(hero.Position);
+                    if (level1.LevelEnd)
+                    {
+                        hero.TimesDied = 0;
+                        hero.Relocate();
+                        level1.DestroyLevel();
+                        gameState = GameState.level2;
+                        
+                    }
+                    if (hero.TooManyDeaths)
+                    {
+                        gameState = GameState.GameOver;
+                        hero.TimesDied = 0;
+                        hero.TooManyDeaths = false;
+                    }
+                    break;
+                case GameState.level2:
+                    hero.Update(gameTime);
+                    level2.CheckForCollision(gameTime, hero, enemy);
                     camera.Follow(hero.Position);
                     if (hero.TooManyDeaths)
                     {
@@ -141,15 +166,6 @@ namespace _2D_Game
                 default:
                     break;
             }
-
-            //if (nextState != null)
-            //{
-            //    currentState = nextState;
-            //    nextState = null;
-
-            //}
-            //currentState.Update(gameTime, spriteBatch);
-            //currentState.PostUpdate(gameTime);
             base.Update(gameTime);
         }
 
@@ -171,13 +187,20 @@ namespace _2D_Game
                     spriteBatch.Draw(menuImage, new Rectangle(200, 100, 300, 300), Color.Beige);
                     spriteBatch.End();
                     break;
-                case GameState.Playing:
+                case GameState.level1:
 
 
                     spriteBatch.Begin(transformMatrix: camera.Transform);
 
-                    level.DrawWorld(spriteBatch);
-                    //enemy.Draw(spriteBatch);
+                    level1.DrawWorld(spriteBatch);
+                    hero.Draw(spriteBatch);
+
+                    spriteBatch.End();
+                    break;
+                case GameState.level2:
+                    spriteBatch.Begin(transformMatrix: camera.Transform);
+
+                    level2.DrawWorld(spriteBatch);
                     hero.Draw(spriteBatch);
 
                     spriteBatch.End();

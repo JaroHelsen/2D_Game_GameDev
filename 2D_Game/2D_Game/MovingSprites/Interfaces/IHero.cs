@@ -24,7 +24,7 @@ namespace _2D_Game.MovingSprites.Interfaces
 
         //#region Methods
         //void HasDied();
-
+        void Relocate();
         //#endregion
 
     }

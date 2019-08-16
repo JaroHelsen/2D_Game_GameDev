@@ -180,6 +180,11 @@ namespace _2D_Game.MovingSprites
             }
             
         }
+
+        public void Relocate()
+        {
+            Position = relocator;
+        }
         #endregion
     }
 }
