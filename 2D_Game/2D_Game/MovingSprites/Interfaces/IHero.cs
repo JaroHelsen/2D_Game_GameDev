@@ -20,10 +20,10 @@ namespace _2D_Game.MovingSprites.Interfaces
         AnimationMotion HeroAnimation { get; set; }
         #endregion
 
-        #region Methods
-        void HasDied();
+        //#region Methods
+        //void HasDied();
 
-        #endregion
+        //#endregion
 
     }
 }

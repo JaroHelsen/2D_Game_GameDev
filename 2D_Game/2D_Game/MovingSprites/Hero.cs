@@ -160,7 +160,7 @@ namespace _2D_Game.MovingSprites
         /// <summary>
         /// Resets the health and then relocates to the last starting position.
         /// </summary>
-        public void HasDied()
+        public override void HasDied()
         {
             Health = 100;
             Position = relocator;

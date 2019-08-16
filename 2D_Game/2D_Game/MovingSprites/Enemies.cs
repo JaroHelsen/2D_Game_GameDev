@@ -90,5 +90,10 @@ namespace _2D_Game.MovingSprites
                 spriteBatch.Draw(SpriteTexture, Position, null, Color.White, rotation, origin, 1f, SpriteEffects.None, 0f);
             }
         }
+
+        public override void HasDied()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

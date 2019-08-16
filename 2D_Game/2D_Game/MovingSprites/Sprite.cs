@@ -65,6 +65,7 @@ namespace _2D_Game.MovingSprites
         /// <param name="gameTime"></param>
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(SpriteBatch spriteBatch);
+        public abstract void HasDied();
         #endregion
     }
 }
