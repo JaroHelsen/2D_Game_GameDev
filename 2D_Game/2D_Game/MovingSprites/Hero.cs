@@ -166,24 +166,29 @@ namespace _2D_Game.MovingSprites
         /// </summary>
         public override void HasDied()
         {
-            //TimesDied += 1;
+            Console.WriteLine("DOODGEGAAN:");
+            TimesDied += 1;
+            Console.WriteLine(TimesDied);
             if (TimesDied >= 3)
             {
                 TooManyDeaths = true;
+                TimesDied = 0;
+                Relocate();
             }
             else
             {
                 Health = 100;
-                Position = relocator;
-                goingLeft = false;
-                SpriteTexture = runningRightTexture;
+                Relocate();
             }
-            
+            System.Threading.Thread.Sleep(250);
+
         }
 
         public void Relocate()
         {
             Position = relocator;
+            goingLeft = false;
+            SpriteTexture = runningRightTexture;
         }
         #endregion
     }

@@ -23,7 +23,7 @@ namespace _2D_Game
         public static int screenWidth;
         public static int screenHeight;
 
-        private Texture2D myBackground, menuImage;
+        private Texture2D myBackground, menuImage, diedImage, wonImage;
         private Rectangle mainFrame;
 
         LevelFactory level1, level2;
@@ -34,6 +34,7 @@ namespace _2D_Game
             Menu,
             level1,
             level2,
+            GameWon,
             GameOver
         }
         GameState gameState = GameState.Menu;
@@ -45,7 +46,6 @@ namespace _2D_Game
             graphics.PreferredBackBufferHeight = 1000;   // set this value to the desired height of your window
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
-            menuImage = null;
         }
 
         /// <summary>
@@ -80,7 +80,9 @@ namespace _2D_Game
             myBackground = Content.Load<Texture2D>("png/BG");
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
-            menuImage = Content.Load<Texture2D>("Objects/Crate");
+            menuImage = Content.Load<Texture2D>("png/BGMenu");
+            wonImage = Content.Load<Texture2D>("png/BGWON");
+            diedImage = Content.Load<Texture2D>("png/BGDead");
 
             level1 = new Level1(Content, hero, enemy);
             level1.CreateLevel(Content);
@@ -110,7 +112,7 @@ namespace _2D_Game
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             KeyboardState keyState;
-
+            Vector2 center = new Vector2(mainFrame.Left + mainFrame.Width / 2, mainFrame.Top + mainFrame.Height / 2);
             //Updating state
             switch (gameState)
             {
@@ -127,13 +129,13 @@ namespace _2D_Game
                     break;
                 case GameState.level1:
                     hero.Update(gameTime);
-                    level1.CheckForCollision(gameTime, hero, enemy);
+
+                    level1.CheckForCollision(gameTime, hero, enemy, Content);
                     camera.Follow(hero.Position);
                     if (level1.LevelEnd)
                     {
                         hero.TimesDied = 0;
                         hero.Relocate();
-                        level1.DestroyLevel();
                         gameState = GameState.level2;
                         
                     }
@@ -146,8 +148,13 @@ namespace _2D_Game
                     break;
                 case GameState.level2:
                     hero.Update(gameTime);
-                    level2.CheckForCollision(gameTime, hero, enemy);
+                    level2.CheckForCollision(gameTime, hero, enemy, Content);
                     camera.Follow(hero.Position);
+                    if (level2.LevelEnd)
+                    {
+                        gameState = GameState.GameWon;
+
+                    }
                     if (hero.TooManyDeaths)
                     {
                         gameState = GameState.GameOver;
@@ -156,8 +163,25 @@ namespace _2D_Game
                     }
                     break;
                 case GameState.GameOver:
+                    camera.Follow(center);
                     keyState = Keyboard.GetState();
-                    if (keyState.IsKeyDown(Keys.D))
+                    if (keyState.IsKeyDown(Keys.R))
+                    {
+                        gameState = GameState.level1;
+                    }
+                    if (keyState.IsKeyDown(Keys.M))
+                    {
+                        gameState = GameState.Menu;
+                    }
+                    break;
+                case GameState.GameWon:
+                    camera.Follow(center);
+                    keyState = Keyboard.GetState();
+                    if (keyState.IsKeyDown(Keys.R))
+                    {
+                        gameState = GameState.level1;
+                    }
+                    if (keyState.IsKeyDown(Keys.M))
                     {
                         gameState = GameState.Menu;
                         //Hier dingen zetten die nu moeten laden (slechts 1x)
@@ -184,14 +208,11 @@ namespace _2D_Game
             {
                 case GameState.Menu:
                     spriteBatch.Begin();
-                    spriteBatch.Draw(menuImage, new Rectangle(200, 100, 300, 300), Color.Beige);
+                    spriteBatch.Draw(menuImage, mainFrame, Color.Beige);
                     spriteBatch.End();
                     break;
                 case GameState.level1:
-
-
                     spriteBatch.Begin(transformMatrix: camera.Transform);
-
                     level1.DrawWorld(spriteBatch);
                     hero.Draw(spriteBatch);
 
@@ -199,14 +220,22 @@ namespace _2D_Game
                     break;
                 case GameState.level2:
                     spriteBatch.Begin(transformMatrix: camera.Transform);
-
                     level2.DrawWorld(spriteBatch);
                     hero.Draw(spriteBatch);
 
                     spriteBatch.End();
                     break;
+                case GameState.GameWon:
+                    spriteBatch.Begin(transformMatrix: camera.Transform);
+
+                    spriteBatch.Draw(wonImage, mainFrame, Color.AliceBlue);
+                    spriteBatch.End();
+                    break;
                 case GameState.GameOver:
-                    //Zelfde als voor de menu state
+                    spriteBatch.Begin(transformMatrix: camera.Transform);
+
+                    spriteBatch.Draw(diedImage, mainFrame, Color.AliceBlue);
+                    spriteBatch.End();
                     break;
                 default:
                     break;

@@ -93,7 +93,7 @@ namespace _2D_Game.LevelDesign
             //thisHero.Draw(spriteBatch);
         }
 
-        public void CheckForCollision(GameTime gameTime, Hero hero, Enemies _enemies)
+        public void CheckForCollision(GameTime gameTime, Hero hero, Enemies _enemies, ContentManager content)
         {
             hero.Update(gameTime);
             foreach (Enemies enemy in enemies)
@@ -121,10 +121,14 @@ namespace _2D_Game.LevelDesign
                         Console.WriteLine("-------------------------------------------------------------------------");
                         Console.WriteLine("");
                         LevelEnd = true;
+                        enemies.Clear();
+                        CreateEnemies(content);
                     }
                 }
                 
             }
         }
+
+        public abstract void CreateEnemies(ContentManager content);
     }
 }
