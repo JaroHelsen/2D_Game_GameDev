@@ -27,39 +27,62 @@ namespace _2D_Game.CoreClasses
                 xMovement = false;
                 if (blok != null)
                 {
-                    if (blok.Id != 3 && blok.Id != 25)
+                    if (blok.Id != 25)
                     {
                         blok.OnPLatform = false;
                         //Check for collision from the left side of the hero (thus he is walking to the left)
                         if (thisHero.CollisionRectangle.Left + thisHero.Velocity.X < blok.CollisionRectangle.Right && thisHero.CollisionRectangle.Right > blok.CollisionRectangle.Right && thisHero.CollisionRectangle.Bottom < blok.CollisionRectangle.Bottom && thisHero.CollisionRectangle.Bottom > blok.CollisionRectangle.Top && thisHero.input.Left == true)
                         {
-                            thisHero.Position.X += 6;
-                            xMovement = true;
+                            if (blok.Id == 3)
+                            {
+                                blok.OnPLatform = false;
+                                Auwch = true;
+                            } else
+                            {
+                                thisHero.Position.X += 6;
+                                xMovement = true;
+                            }
                         }
                         //Check for collision from the right side of the hero (thus he is walking to the right)
                         if (thisHero.CollisionRectangle.Right + thisHero.Velocity.X > blok.CollisionRectangle.Left && thisHero.CollisionRectangle.Left < blok.CollisionRectangle.Left && thisHero.CollisionRectangle.Bottom < blok.CollisionRectangle.Bottom && thisHero.CollisionRectangle.Bottom > blok.CollisionRectangle.Top && thisHero.input.Right == true)
                         {
-                            thisHero.Position.X -= 6;
-                            xMovement = true;
+                            if (blok.Id == 3)
+                            {
+                                blok.OnPLatform = false;
+                                Auwch = true;
+                            }
+                            else
+                            {
+                                thisHero.Position.X -= 6;
+                                xMovement = true;
+                            }
                         }
                         //Check for collision with hero and a blok underneath it
                         if (thisHero.CollisionRectangle.Bottom + 25 >= blok.CollisionRectangle.Top && thisHero.CollisionRectangle.Top < blok.CollisionRectangle.Top && ((thisHero.CollisionRectangle.Left + 15 >= blok.CollisionRectangle.Left && thisHero.CollisionRectangle.Left + 15 <= blok.CollisionRectangle.Right) || (thisHero.CollisionRectangle.Right - 15 >= blok.CollisionRectangle.Left && thisHero.CollisionRectangle.Right - 15 <= blok.CollisionRectangle.Right)))
                         {
-                            thisHero.Position.Y = blok.CollisionRectangle.Top - thisHero.CollisionRectangle.Height - 20;
-                            blok.OnPLatform = true;
+                            if (blok.Id == 3)
+                            {
+                                blok.OnPLatform = false;
+                                Auwch = true;
+                            }
+                            else
+                            {
+                                thisHero.Position.Y = blok.CollisionRectangle.Top - thisHero.CollisionRectangle.Height - 20;
+                                blok.OnPLatform = true;
+                            }
                         }
                         //Check for collision betweenhero and blok on top of it
                         if (thisHero.CollisionRectangle.Top + thisHero.Velocity.Y < blok.CollisionRectangle.Bottom && thisHero.CollisionRectangle.Bottom > blok.CollisionRectangle.Bottom && thisHero.CollisionRectangle.Right > blok.CollisionRectangle.Left && thisHero.CollisionRectangle.Left < blok.CollisionRectangle.Right && thisHero.HasJumped == true)
                         {
-                            thisHero.Position.Y -= thisHero.Velocity.Y - 3;
-                        }
-                    }
-                    else if (blok.Id == 3)
-                    {
-                        if (thisHero.CollisionRectangle.Intersects(blok.CollisionRectangle))
-                        {
-                            blok.OnPLatform = false;
-                            Auwch = true;
+                            if (blok.Id == 3)
+                            {
+                                blok.OnPLatform = false;
+                                Auwch = true;
+                            }
+                            else
+                            {
+                                thisHero.Position.Y -= thisHero.Velocity.Y - 3;
+                            }
                         }
                     }
                     else if (blok.Id == 25)
