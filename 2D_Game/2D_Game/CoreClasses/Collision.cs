@@ -13,7 +13,7 @@ namespace _2D_Game.Main
         #region Variables
         Blok[,] blokken;
         Hero thisHero;
-        Enemies[] enemies;
+        List<Enemies> enemies;
 
         public bool xMovement = false;
         public bool onPlat = false;
@@ -23,7 +23,7 @@ namespace _2D_Game.Main
         #endregion
 
         #region Constructor
-        public Collision(Hero _hero, Blok[,] blokArray, Enemies[] _enemy)
+        public Collision(Hero _hero, Blok[,] blokArray, List<Enemies> _enemy)
         {
             thisHero = _hero;
             game = new Game1();
@@ -114,7 +114,13 @@ namespace _2D_Game.Main
             }
             foreach (Enemies enemy in enemies)
             {
-                if (thisHero.CollisionRectangle.Intersects(enemy.CollisionRectangle))
+                if (thisHero.CollisionRectangle.Bottom + 25 >= enemy.CollisionRectangle.Top && thisHero.CollisionRectangle.Top < enemy.CollisionRectangle.Top && ((thisHero.CollisionRectangle.Left + 15 >= enemy.CollisionRectangle.Left && thisHero.CollisionRectangle.Left + 15 <= enemy.CollisionRectangle.Right) || (thisHero.CollisionRectangle.Right - 15 >= enemy.CollisionRectangle.Left && thisHero.CollisionRectangle.Right - 15 <= enemy.CollisionRectangle.Right)))
+                {
+                    enemy.HasDied();
+                    //thisHero.Position.Y = blok.CollisionRectangle.Top - thisHero.CollisionRectangle.Height - 20;
+
+                }
+                else if (thisHero.CollisionRectangle.Intersects(enemy.CollisionRectangle))
                 {
                     Console.WriteLine("HELP IK BEN GERAAKT");
                     Auwch = true;

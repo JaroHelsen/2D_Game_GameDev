@@ -93,7 +93,7 @@ namespace _2D_Game.MovingSprites
 
         public override void HasDied()
         {
-            throw new NotImplementedException();
+            Health = 0;
         }
     }
 }

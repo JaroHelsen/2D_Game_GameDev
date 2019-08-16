@@ -17,7 +17,7 @@ namespace _2D_Game.LevelDesign
         //ContentManager content;
         protected Collision collisionChecker;
         public Hero thisHero;
-        public Enemies[] enemies = new Enemies[2];
+        public List<Enemies> enemies;
         protected EnemyCreator enemyCreator = new EnemyCreator();
         public Texture2D GroundTexture { get; set; }
         public Texture2D CrateTexture { get; set; }
@@ -97,6 +97,14 @@ namespace _2D_Game.LevelDesign
             
             collisionChecker.CheckCollision();
             collisionChecker.EnemyCollisionCheck();
+
+            for (int i = enemies.Count -  1 ; i >= 0 ; i--)
+            {
+                if (enemies[i].Health == 0)
+                {
+                    enemies.RemoveAt(i);
+                }
+            }
         }
     }
 }

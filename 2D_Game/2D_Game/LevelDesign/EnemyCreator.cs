@@ -11,17 +11,17 @@ namespace _2D_Game.LevelDesign
 {
     class EnemyCreator
     {
-        public Enemies[] GeneratedEnemies { get; set; }
+        public List<Enemies> GeneratedEnemies { get; set; }
         private Random rand;
-        public Enemies[] GenerateEnemies(int aantal, Texture2D texture, Vector2 position, int randomMax)
+        public List<Enemies> GenerateEnemies(int aantal, Texture2D texture, Vector2 position, int randomMax)
         {
             rand = new Random();
-            GeneratedEnemies = new Enemies[aantal];
+            GeneratedEnemies = new List<Enemies>();
             
             for (int i = 0; i < aantal; i++)
             {
                 position.X = rand.Next(100, randomMax);
-                GeneratedEnemies[i] = new Enemies(texture, position, 150);
+                GeneratedEnemies.Add(new Enemies(texture, position, 150));
             }
             return GeneratedEnemies;
         }
