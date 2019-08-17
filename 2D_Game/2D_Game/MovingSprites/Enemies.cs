@@ -11,7 +11,6 @@ namespace _2D_Game.MovingSprites
 {
     public class Enemies: Sprite
     {
-        public AnimationMotion SpriteAnimation { get; set; }
         Vector2 origin;
         float rotation = 0f;
         float distance, oldDistance;

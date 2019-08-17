@@ -1,4 +1,5 @@
-﻿using _2D_Game.MovingSprites.Interfaces;
+﻿using _2D_Game.Animations;
+using _2D_Game.MovingSprites.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,6 +14,7 @@ namespace _2D_Game.MovingSprites
     {
         #region Properties
         public Texture2D SpriteTexture { get; set; }
+        public AnimationMotion SpriteAnimation { get; set; }
 
         public bool BootsOnTheGround { get; set; }
 

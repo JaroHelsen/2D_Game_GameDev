@@ -18,8 +18,6 @@ namespace _2D_Game.MovingSprites.Interfaces
         Boolean HasJumped { get; set; }
         Boolean TooManyDeaths { get; set; }
         Rectangle CollisionRectangle { get; set; }
-
-        AnimationMotion HeroAnimation { get; set; }
         #endregion
     }
 }

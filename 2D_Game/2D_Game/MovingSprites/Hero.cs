@@ -15,7 +15,7 @@ namespace _2D_Game.MovingSprites
     public class Hero :  Sprite, IHero
     {
         #region Properties
-        public AnimationMotion HeroAnimation { get; set; }
+        //public AnimationMotion HeroAnimation { get; set; }
         public int TimesDied { get; set; }
         public Boolean TooManyDeaths { get; set; }
 
@@ -53,9 +53,9 @@ namespace _2D_Game.MovingSprites
             jumpingTexture = content.Load<Texture2D>("HeroSprites/Jumping");
 
             //Animations loaden
-            HeroAnimation = new AnimationMotion();
-            HeroAnimation.AddAnimation(SpriteTexture, 4);
-            HeroAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 2;
+            SpriteAnimation = new AnimationMotion();
+            SpriteAnimation.AddAnimation(SpriteTexture, 4);
+            SpriteAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 1;
 
             _runningRightAnimation = new AnimationMotion();
             _runningRightAnimation.AddAnimation(runningRightTexture, 4);
@@ -96,7 +96,7 @@ namespace _2D_Game.MovingSprites
             Position.Y += Velocity.Y;
             if (input.Left || input.Right || input.Jump)
             {
-                HeroAnimation.Update(gameTime);
+                SpriteAnimation.Update(gameTime);
             }
             if (input.Right || input.Left)
             {
@@ -114,7 +114,7 @@ namespace _2D_Game.MovingSprites
                 {
                     SpriteTexture = runningRightTexture;
 
-                    HeroAnimation = _runningRightAnimation;
+                    SpriteAnimation = _runningRightAnimation;
                     _runningRightAnimation.Update(gameTime);
                 }
 
@@ -127,7 +127,7 @@ namespace _2D_Game.MovingSprites
                 HasJumped = true;
                 BootsOnTheGround = false;
                 SpriteTexture = jumpingTexture;
-                HeroAnimation = _jumpingAnimation;
+                SpriteAnimation = _jumpingAnimation;
                 _jumpingAnimation.Update(gameTime);
 
             }
@@ -157,7 +157,7 @@ namespace _2D_Game.MovingSprites
         public override void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(HeroTexture, CollisionRectangle, Color.AliceBlue);
-            spriteBatch.Draw(SpriteTexture, new Vector2((int)Position.X, (int)Position.Y + 27), HeroAnimation.CurrentAnimation.CurrentFrame.SourceRectangle, Color.AliceBlue, 0f, Vector2.Zero, 1f, goingLeft ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(SpriteTexture, new Vector2((int)Position.X, (int)Position.Y + 27), SpriteAnimation.CurrentAnimation.CurrentFrame.SourceRectangle, Color.AliceBlue, 0f, Vector2.Zero, 1f, goingLeft ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0.0f);
         }
 
         /// <summary>
