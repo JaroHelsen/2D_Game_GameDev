@@ -1,17 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace _2D_Game.MovingSprites.Interfaces
+namespace _2D_Game.MovingSprites
 {
-    interface ISprite
+    public interface ISprite
     {
         Texture2D SpriteTexture { get; set; }
+
         bool BootsOnTheGround { get; set; }
+
         int Health { get; set; }
         bool HasJumped { get; set; }
 

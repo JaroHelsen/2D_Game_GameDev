@@ -26,29 +26,11 @@ namespace _2D_Game.MovingSprites
             get { return collisionRectangle; }
             set { collisionRectangle = value; }
         }
-        protected Vector2 position;
-
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-
-        protected Vector2 velocity;
-
-        public Vector2 Velocity
-        {
-            get { return velocity; }
-            set { velocity = value; }
-        }
-
-        //public Vector2 Position { get; set; }
-        //public Vector2 Velocity { get; set; }
         #endregion
 
         #region Variables
-        //protected Vector2 Position;
-        //protected Vector2 Velocity;
+        public Vector2 Position;
+        public Vector2 Velocity;
         protected bool goingLeft;
         protected Vector2 relocator;
         #endregion
