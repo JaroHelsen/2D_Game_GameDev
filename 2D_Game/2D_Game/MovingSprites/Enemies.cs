@@ -17,7 +17,7 @@ namespace _2D_Game.MovingSprites
         public Enemies(Texture2D _texture, Vector2 _position, float _distance):base(_position)
         {
             SpriteTexture = _texture;
-            //position = _position;
+            Position = _position;
             distance = 300;
 
             oldDistance = distance;
