@@ -1,6 +1,7 @@
 ﻿using _2D_Game.LevelDesign;
 using _2D_Game.Main;
 using _2D_Game.MovingSprites;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace _2D_Game.CoreClasses
             //Console.WriteLine("word ik opgeroepen?");
             onPlat = false;
             Auwch = false;
+            Vector2 temp = new Vector2();
             //thisHero.BootsOnTheGround = false;
             foreach (Blok blok in blokken)
             {
@@ -39,7 +41,10 @@ namespace _2D_Game.CoreClasses
                                 Auwch = true;
                             } else
                             {
-                                thisHero.Position.X += 6;
+                                temp.X = thisHero.Position.X + 6;
+                                temp.Y = thisHero.Position.Y;
+                                thisHero.SetPosition(temp);
+                                //thisHero.Position.X += 6;
                                 xMovement = true;
                             }
                         }
@@ -53,7 +58,10 @@ namespace _2D_Game.CoreClasses
                             }
                             else
                             {
-                                thisHero.Position.X -= 6;
+                                temp.X = thisHero.Position.X - 6;
+                                temp.Y = thisHero.Position.Y;
+                                thisHero.SetPosition(temp);
+                                //thisHero.Position.X -= 6;
                                 xMovement = true;
                             }
                         }
@@ -67,7 +75,10 @@ namespace _2D_Game.CoreClasses
                             }
                             else
                             {
-                                thisHero.Position.Y = blok.CollisionRectangle.Top - thisHero.CollisionRectangle.Height - 20;
+                                temp.X = thisHero.Position.X;
+                                temp.Y = blok.CollisionRectangle.Top - thisHero.CollisionRectangle.Height - 20;
+                                thisHero.SetPosition(temp);
+                                //thisHero.Position.Y = blok.CollisionRectangle.Top - thisHero.CollisionRectangle.Height - 20;
                                 blok.OnPLatform = true;
                             }
                         }
@@ -81,7 +92,10 @@ namespace _2D_Game.CoreClasses
                             }
                             else
                             {
-                                thisHero.Position.Y -= thisHero.Velocity.Y - 3;
+                                temp.X = thisHero.Position.X + 6;
+                                temp.Y = thisHero.Position.Y - thisHero.Velocity.Y - 3;
+                                thisHero.SetPosition(temp);
+                                //thisHero.Position.Y -= thisHero.Velocity.Y - 3;
                             }
                         }
                     }
