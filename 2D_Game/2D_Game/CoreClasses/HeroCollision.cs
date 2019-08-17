@@ -132,12 +132,7 @@ namespace _2D_Game.CoreClasses
             }
             if (Auwch)
             {
-                //thisHero.Health -= 25;
-                //Console.WriteLine(thisHero.Health);
-                //if (thisHero.Health <= 0)
-                //{
-                    thisHero.HasDied();
-                //}
+                thisHero.HasDied();
                 Auwch = false;
             }
         }

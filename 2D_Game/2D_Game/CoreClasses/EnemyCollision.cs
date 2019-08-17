@@ -87,6 +87,11 @@ namespace _2D_Game.CoreClasses
                     enemy.BootsOnTheGround = false;
                     //Console.WriteLine("onplat enemy");
                 }
+                if (Auwch)
+                {
+                    enemy.HasDied();
+                    Auwch = false;
+                }
             }
 
         }
