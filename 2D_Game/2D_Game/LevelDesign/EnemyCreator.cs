@@ -17,7 +17,7 @@ namespace _2D_Game.LevelDesign
         {
             rand = new Random();
             GeneratedEnemies = new List<Enemies>();
-            
+
             for (int i = 0; i < aantal; i++)
             {
                 position.X = rand.Next(820, randomMax);

@@ -142,7 +142,7 @@ namespace _2D_Game.LevelDesign
 
         public override void CreateEnemies(ContentManager content)
         {
-            enemies = enemyCreator.GenerateEnemies(25, content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(0, 0), 12301);
+            enemies = enemyCreator.GenerateEnemies(25, content.Load<Texture2D>("EnemyWalker"), new Vector2(0, 0), 12301);
         }
     }
 }

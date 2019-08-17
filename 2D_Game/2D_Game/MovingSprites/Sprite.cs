@@ -69,10 +69,6 @@ namespace _2D_Game.MovingSprites
         public abstract void Draw(SpriteBatch spriteBatch);
         public abstract void HasDied();
         public abstract void Relocate();
-        public void SetPosition(Vector2 value)
-        {
-            position = value;
-        }
         #endregion
     }
 }

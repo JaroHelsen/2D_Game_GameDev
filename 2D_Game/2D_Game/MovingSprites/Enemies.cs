@@ -11,11 +11,9 @@ namespace _2D_Game.MovingSprites
 {
     public class Enemies: Sprite
     {
-        public AnimationMotion HeroAnimation { get; set; }
+        public AnimationMotion SpriteAnimation { get; set; }
         Vector2 origin;
         float rotation = 0f;
-
-        bool right;
         float distance, oldDistance;
         public Enemies(Texture2D _texture, Vector2 _position, float _distance):base(_position)
         {
@@ -29,9 +27,9 @@ namespace _2D_Game.MovingSprites
             HasJumped = true;
 
             //Animations loaden
-            HeroAnimation = new AnimationMotion();
-            HeroAnimation.AddAnimation(SpriteTexture, 4);
-            HeroAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 2;
+            SpriteAnimation = new AnimationMotion();
+            SpriteAnimation.AddAnimation(SpriteTexture, 4);
+            SpriteAnimation.CurrentAnimation.AantalBewegingenPerSeconde = 2;
 
 
             CollisionRectangle = new Rectangle((int)Position.X, (int)Position.Y, SpriteTexture.Width, SpriteTexture.Height / 4);
@@ -41,20 +39,20 @@ namespace _2D_Game.MovingSprites
         {
             Position += Velocity;
             origin = new Vector2(SpriteTexture.Width / 2, SpriteTexture.Height / 2);
-            HeroAnimation.Update(gameTime);
+            SpriteAnimation.Update(gameTime);
 
             if (distance <= 0)
             {
-                right = true;
+                goingLeft = false;
                 Velocity.X = 1f;
             }
             else if(distance >= oldDistance)
             {
-                right = false;
+                goingLeft = true;
                 Velocity.X = -1f;
             }
 
-            if (right)
+            if (!goingLeft)
             {
                 distance += 1;
             }
@@ -81,14 +79,7 @@ namespace _2D_Game.MovingSprites
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (Velocity.X > 0)
-            {
-                spriteBatch.Draw(SpriteTexture, Position, null, Color.White, rotation, origin, 1f, SpriteEffects.FlipHorizontally, 0f);
-            }
-            else
-            {
-                spriteBatch.Draw(SpriteTexture, Position, null, Color.White, rotation, origin, 1f, SpriteEffects.None, 0f);
-            }
+            spriteBatch.Draw(SpriteTexture, new Vector2((int)Position.X - 47, (int)Position.Y - 32), SpriteAnimation.CurrentAnimation.CurrentFrame.SourceRectangle, Color.AliceBlue, 0f, Vector2.Zero, 2.5f, goingLeft ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0.0f);
         }
 
         public override void HasDied()
