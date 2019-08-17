@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using _2D_Game.MovingSprites.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _2D_Game.MovingSprites
 {
-    public abstract class Sprite
+    public abstract class Sprite: ISprite
     {
         #region Properties
         public Texture2D SpriteTexture { get; set; }
@@ -25,12 +26,30 @@ namespace _2D_Game.MovingSprites
             get { return collisionRectangle; }
             set { collisionRectangle = value; }
         }
+        protected Vector2 position;
+
+        public Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+
+        protected Vector2 velocity;
+
+        public Vector2 Velocity
+        {
+            get { return velocity; }
+            set { velocity = value; }
+        }
+
+        //public Vector2 Position { get; set; }
+        //public Vector2 Velocity { get; set; }
         #endregion
 
         #region Variables
-        public Vector2 Position;
-        public Vector2 Velocity;
-        public bool goingLeft;
+        //protected Vector2 Position;
+        //protected Vector2 Velocity;
+        protected bool goingLeft;
         protected Vector2 relocator;
         #endregion
 
@@ -68,6 +87,10 @@ namespace _2D_Game.MovingSprites
         public abstract void Draw(SpriteBatch spriteBatch);
         public abstract void HasDied();
         public abstract void Relocate();
+        public void SetPosition(Vector2 value)
+        {
+            position = value;
+        }
         #endregion
     }
 }
