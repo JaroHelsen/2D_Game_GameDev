@@ -20,7 +20,7 @@ namespace _2D_Game.LevelDesign
         /// </summary>
         /// <param name="_content"></param>
         /// <param name="myHero"></param>
-        public Level1(ContentManager _content, Hero myHero, Enemies _enemies) //: base(myHero)
+        public Level1(ContentManager _content, Hero myHero) //: base(myHero)
         {
             enemies = new List<Enemies>();
             CreateEnemies(_content);

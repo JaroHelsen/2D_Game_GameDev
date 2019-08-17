@@ -14,7 +14,7 @@ namespace _2D_Game.LevelDesign
 {
     class Level2 : LevelFactory
     {
-        public Level2(ContentManager _content, Hero myHero, Enemies _enemies) //: base(myHero)
+        public Level2(ContentManager _content, Hero myHero )
         {
 
             enemies = new List<Enemies>();

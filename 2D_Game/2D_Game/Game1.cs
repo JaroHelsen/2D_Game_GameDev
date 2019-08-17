@@ -17,7 +17,6 @@ namespace _2D_Game
         SpriteBatch spriteBatch;
 
         Hero hero;
-        Enemies enemy;
         Camera camera;
 
         public static int screenWidth;
@@ -84,10 +83,10 @@ namespace _2D_Game
             wonImage = Content.Load<Texture2D>("png/BGWON");
             diedImage = Content.Load<Texture2D>("png/BGDead");
 
-            level1 = new Level1(Content, hero, enemy);
+            level1 = new Level1(Content, hero);
             level1.CreateLevel(Content);
 
-            level2 = new Level2(Content, hero, enemy);
+            level2 = new Level2(Content, hero);
             level2.CreateLevel(Content);
 
             camera = new Camera();
@@ -130,7 +129,7 @@ namespace _2D_Game
                 case GameState.level1:
                     hero.Update(gameTime);
 
-                    level1.CheckForCollision(gameTime, hero, enemy, Content);
+                    level1.CheckForCollision(gameTime, hero, Content);
                     camera.Follow(hero.Position);
                     if (level1.LevelEnd)
                     {
@@ -149,7 +148,7 @@ namespace _2D_Game
                     break;
                 case GameState.level2:
                     hero.Update(gameTime);
-                    level2.CheckForCollision(gameTime, hero, enemy, Content);
+                    level2.CheckForCollision(gameTime, hero, Content);
                     camera.Follow(hero.Position);
                     if (level2.LevelEnd)
                     {

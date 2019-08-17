@@ -16,7 +16,6 @@ namespace _2D_Game.LevelDesign
     {
         //ContentManager content;
         protected Collision heroCollisionChecker, enemyCollisionChecker;
-        public Hero thisHero;
         public List<Enemies> enemies;
         protected EnemyCreator enemyCreator = new EnemyCreator();
         public Texture2D GroundTexture { get; set; }
@@ -98,7 +97,7 @@ namespace _2D_Game.LevelDesign
             //thisHero.Draw(spriteBatch);
         }
 
-        public void CheckForCollision(GameTime gameTime, Hero hero, Enemies _enemies, ContentManager content)
+        public void CheckForCollision(GameTime gameTime, Hero hero, ContentManager content)
         {
             hero.Update(gameTime);
             foreach (Enemies enemy in enemies)
