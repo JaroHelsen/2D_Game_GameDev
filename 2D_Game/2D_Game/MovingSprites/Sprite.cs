@@ -34,7 +34,6 @@ namespace _2D_Game.MovingSprites
         public Vector2 Position;
         public Vector2 Velocity;
         protected bool goingLeft;
-        protected Vector2 relocator;
         #endregion
 
         #region Constructor

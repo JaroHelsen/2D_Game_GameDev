@@ -23,7 +23,7 @@ namespace _2D_Game.MovingSprites
 
         #region Variables
         public BedieningPijltjes input;
-
+        private Vector2 relocator;
         //Animations
         private AnimationMotion _runningRightAnimation;
         private AnimationMotion _runningLeftAnimation;

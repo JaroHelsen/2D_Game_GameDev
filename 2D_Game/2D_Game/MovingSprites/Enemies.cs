@@ -11,12 +11,11 @@ namespace _2D_Game.MovingSprites
 {
     public class Enemies: Sprite
     {
+        public Vector2 Relocator { get; set; }
         Vector2 origin;
-        float rotation = 0f;
         float distance, oldDistance;
         public Enemies(Texture2D _texture, Vector2 _position, float _distance):base(_position)
         {
-            relocator = _position;
             SpriteTexture = _texture;
             //position = _position;
             distance = 300;
@@ -89,7 +88,8 @@ namespace _2D_Game.MovingSprites
 
         public override void Relocate()
         {
-            Position = relocator;
+            Position = Relocator;
+            Health = 10;
             goingLeft = false;
             HasJumped = true;
         }
