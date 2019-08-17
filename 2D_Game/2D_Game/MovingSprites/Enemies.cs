@@ -1,4 +1,5 @@
 ﻿using _2D_Game.Animations;
+using _2D_Game.MovingSprites.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace _2D_Game.MovingSprites
 {
-    public class Enemies: Sprite
+    public class Enemies: Sprite, IEnemies
     {
         public Vector2 Relocator { get; set; }
-        Vector2 origin;
-        float distance, oldDistance;
+        protected Vector2 origin;
+        protected float distance, oldDistance;
         public Enemies(Texture2D _texture, Vector2 _position, float _distance):base(_position)
         {
             SpriteTexture = _texture;
