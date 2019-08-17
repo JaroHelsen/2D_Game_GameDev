@@ -16,6 +16,7 @@ namespace _2D_Game.MovingSprites
         float distance, oldDistance;
         public Enemies(Texture2D _texture, Vector2 _position, float _distance):base(_position)
         {
+            relocator = _position;
             SpriteTexture = _texture;
             //position = _position;
             distance = 300;
@@ -90,6 +91,7 @@ namespace _2D_Game.MovingSprites
         {
             Position = relocator;
             goingLeft = false;
+            HasJumped = true;
         }
     }
 }

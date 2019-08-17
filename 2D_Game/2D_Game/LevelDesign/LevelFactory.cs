@@ -135,12 +135,6 @@ namespace _2D_Game.LevelDesign
         }
 
         public abstract void CreateEnemies(ContentManager content);
-        public void ReturnEnemiesToPlaces()
-        {
-            foreach (Enemies enemy in enemies)
-            {
-                enemy.Relocate();
-            }
-        }
+        public abstract void ReturnEnemiesToPlaces();
     }
 }

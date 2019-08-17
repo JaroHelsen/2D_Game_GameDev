@@ -134,9 +134,9 @@ namespace _2D_Game
                     camera.Follow(hero.Position);
                     if (level1.LevelEnd)
                     {
-                        level2.ReturnEnemiesToPlaces();
                         hero.TimesDied = 0;
                         hero.Relocate();
+                        level2.ReturnEnemiesToPlaces();
                         gameState = GameState.level2;
                         
                     }

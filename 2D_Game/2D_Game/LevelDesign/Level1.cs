@@ -144,5 +144,13 @@ namespace _2D_Game.LevelDesign
         {
             enemies = enemyCreator.GenerateEnemies(25, content.Load<Texture2D>("EnemyWalker"), new Vector2(0, 0), 12301);
         }
+
+        public override void ReturnEnemiesToPlaces()
+        {
+            foreach (Enemies enemy in enemies)
+            {
+                enemy.Relocate();
+            }
+        }
     }
 }

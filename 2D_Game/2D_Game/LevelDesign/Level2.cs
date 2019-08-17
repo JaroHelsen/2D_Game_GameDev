@@ -138,5 +138,9 @@ namespace _2D_Game.LevelDesign
         {
             enemies = enemyCreator.GenerateEnemies(2, content.Load<Texture2D>("HeroSprites/Jumping"), new Vector2(0, 100), 5000);
         }
+
+        public override void ReturnEnemiesToPlaces()
+        {
+        }
     }
 }
