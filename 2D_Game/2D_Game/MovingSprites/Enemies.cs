@@ -46,12 +46,12 @@ namespace _2D_Game.MovingSprites
             if (distance <= 0)
             {
                 right = true;
-                velocity.X = 1f;
+                Velocity.X = 1f;
             }
             else if(distance >= oldDistance)
             {
                 right = false;
-                velocity.X = -1f;
+                Velocity.X = -1f;
             }
 
             if (right)
@@ -66,13 +66,13 @@ namespace _2D_Game.MovingSprites
             {
                 Console.WriteLine("hasjumpeded");
                 float i = 1;
-                velocity.Y += 0.15f * i;
+                Velocity.Y += 0.15f * i;
             }
             if (BootsOnTheGround)
             {
                 Console.WriteLine("boots");
                 HasJumped = false;
-                velocity.Y = 0f;
+                Velocity.Y = 0f;
             }
 
             collisionRectangle.X = (int)Position.X;

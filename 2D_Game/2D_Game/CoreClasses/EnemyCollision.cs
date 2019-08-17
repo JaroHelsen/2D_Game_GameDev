@@ -1,7 +1,6 @@
 ﻿using _2D_Game.LevelDesign;
 using _2D_Game.Main;
 using _2D_Game.MovingSprites;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +17,6 @@ namespace _2D_Game.CoreClasses
 
         public override void CheckCollision()
         {
-            Vector2 temp = new Vector2();
             foreach (Enemies enemy in enemies)
             {
                 //Console.WriteLine("enemy check?");
@@ -37,36 +35,25 @@ namespace _2D_Game.CoreClasses
                             //Check for collision from the left side of the hero(thus he is walking to the left)
                             if (enemy.CollisionRectangle.Left + enemy.Velocity.X < blok.CollisionRectangle.Right && enemy.CollisionRectangle.Right > blok.CollisionRectangle.Right && enemy.CollisionRectangle.Bottom < blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Bottom > blok.CollisionRectangle.Top)// && thisHero.input.Left == true)
                             {
-                                temp.X = enemy.Position.X + 6;
-                                temp.Y = enemy.Position.Y;
-                                enemy.SetPosition(temp);
-                                //enemy.Position.X += 6;
+                                enemy.Position.X += 6;
                                 xMovement = true;
                             }
                             //Check for collision from the right side of the hero (thus he is walking to the right)
                             if (enemy.CollisionRectangle.Right + enemy.Velocity.X > blok.CollisionRectangle.Left && enemy.CollisionRectangle.Left < blok.CollisionRectangle.Left && enemy.CollisionRectangle.Bottom < blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Bottom > blok.CollisionRectangle.Top)// && thisHero.input.Right == true)
                             {
-                                temp.X = enemy.Position.X - 6;
-                                temp.Y = enemy.Position.Y;
-                                enemy.SetPosition(temp);
-                                //enemy.Position.X -= 6;
+                                enemy.Position.X -= 6;
                                 xMovement = true;
                             }
                             //Check for collision with hero and a blok underneath it
                             if (enemy.CollisionRectangle.Bottom + 25 >= blok.CollisionRectangle.Top && enemy.CollisionRectangle.Top < blok.CollisionRectangle.Top && ((enemy.CollisionRectangle.Left + 15 >= blok.CollisionRectangle.Left && enemy.CollisionRectangle.Left + 15 <= blok.CollisionRectangle.Right) || (enemy.CollisionRectangle.Right - 15 >= blok.CollisionRectangle.Left && enemy.CollisionRectangle.Right - 15 <= blok.CollisionRectangle.Right)))
                             {
-                                temp.X = enemy.Position.X;
-                                temp.Y = blok.CollisionRectangle.Top - enemy.CollisionRectangle.Height - 20;
-                                enemy.SetPosition(temp);
-                                //enemy.Position.Y = blok.CollisionRectangle.Top - enemy.CollisionRectangle.Height - 20;
+                                enemy.Position.Y = blok.CollisionRectangle.Top - enemy.CollisionRectangle.Height - 20;
                                 blok.OnPLatform = true;
                             }
                             //Check for collision betweenhero and blok on top of it
                             if (enemy.CollisionRectangle.Top + enemy.Velocity.Y < blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Bottom > blok.CollisionRectangle.Bottom && enemy.CollisionRectangle.Right > blok.CollisionRectangle.Left && enemy.CollisionRectangle.Left < blok.CollisionRectangle.Right && enemy.HasJumped == true)
                             {
-                                temp.X = enemy.Position.X;
-                                temp.Y = enemy.Position.Y - enemy.Velocity.Y;
-                                //enemy.Position.Y -= enemy.Velocity.Y - 3;
+                                enemy.Position.Y -= enemy.Velocity.Y - 3;
                             }
                         }
                         else if (blok.Id == 3)

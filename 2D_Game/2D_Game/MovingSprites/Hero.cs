@@ -93,7 +93,7 @@ namespace _2D_Game.MovingSprites
             Console.WriteLine(Position);
             Console.WriteLine("Hallo");
             input.Update();
-            position.Y += Velocity.Y;
+            Position.Y += Velocity.Y;
             if (input.Left || input.Right || input.Jump)
             {
                 HeroAnimation.Update(gameTime);
@@ -102,12 +102,12 @@ namespace _2D_Game.MovingSprites
             {
                 if (input.Right)
                 {
-                    position.X += Velocity.X;
+                    Position.X += Velocity.X;
                     goingLeft = false;
                 }
                 else if (input.Left)
                 {
-                    position.X -= Velocity.X;
+                    Position.X -= Velocity.X;
                     goingLeft = true;
                 }
                 if (HasJumped == false)
@@ -122,8 +122,8 @@ namespace _2D_Game.MovingSprites
             if (input.Jump && HasJumped == false)
             {
                 Console.WriteLine("jump");
-                position.Y -= 40f;
-                velocity.Y = -7f;
+                Position.Y -= 40f;
+                Velocity.Y = -7f;
                 HasJumped = true;
                 BootsOnTheGround = false;
                 SpriteTexture = jumpingTexture;
@@ -135,13 +135,13 @@ namespace _2D_Game.MovingSprites
             {
                 Console.WriteLine("hasjump");
                 float i = 1;
-                velocity.Y += 0.15f * i;
+                Velocity.Y += 0.15f * i;
             }
             if (BootsOnTheGround)
             {
                 Console.WriteLine("boots");
                 HasJumped = false;
-                velocity.Y = 0f;
+                Velocity.Y = 0f;
             }
 
             collisionRectangle.X = (int)Position.X;

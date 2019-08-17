@@ -60,7 +60,6 @@
     <Compile Include="MovingSprites\Enemies.cs" />
     <Compile Include="MovingSprites\Hero.cs" />
     <Compile Include="MovingSprites\Interfaces\IHero.cs" />
-    <Compile Include="MovingSprites\Interfaces\ISprite.cs" />
     <Compile Include="MovingSprites\Sprite.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

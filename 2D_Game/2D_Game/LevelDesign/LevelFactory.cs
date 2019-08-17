@@ -113,7 +113,7 @@ namespace _2D_Game.LevelDesign
             {
                 if (enemies[i].Health == 0)
                 {
-                    enemies[i].SetPosition(new Vector2(-1000, 0));
+                    enemies[i].Position.X = -1000;
                 }
             }
             foreach (Blok blok in blokArray)
