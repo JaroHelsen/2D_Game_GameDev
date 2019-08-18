@@ -277,9 +277,6 @@ namespace _2D_Game
                 default:
                     break;
             }
-
-            
-            //currentState.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
         }
     }
