@@ -5,6 +5,7 @@ using _2D_Game.MovingSprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace _2D_Game
 {
@@ -18,6 +19,7 @@ namespace _2D_Game
 
         Hero hero;
         Camera camera;
+        Song backgroundMusic;
 
         public static int screenWidth;
         public static int screenHeight;
@@ -95,6 +97,10 @@ namespace _2D_Game
             levelBeginner.CreateLevel(Content);
 
             camera = new Camera();
+
+            backgroundMusic = Content.Load<Song>("Background");
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.IsRepeating = true;
         }
 
         /// <summary>

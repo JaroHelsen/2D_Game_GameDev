@@ -517,3 +517,9 @@
 /processorParam:TextureFormat=Color
 /build:EnemyWalker.png
 
+#begin Background.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Background.mp3
+
