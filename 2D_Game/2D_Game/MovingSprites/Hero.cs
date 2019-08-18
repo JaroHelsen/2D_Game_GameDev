@@ -183,7 +183,6 @@ namespace _2D_Game.MovingSprites
                 Relocate();
                 WaitTime(10);
             }
-            //System.Threading.Thread.Sleep(250);
 
         }
 
