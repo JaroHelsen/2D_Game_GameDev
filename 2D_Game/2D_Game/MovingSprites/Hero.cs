@@ -25,8 +25,6 @@ namespace _2D_Game.MovingSprites
         #region Variables
         public BedieningPijltjes input;
         private Vector2 relocator;
-        private float delay = 0;
-        private bool trigger = false;
         //Animations
         private AnimationMotion _runningRightAnimation;
         private AnimationMotion _runningLeftAnimation;
@@ -175,21 +173,13 @@ namespace _2D_Game.MovingSprites
             {
                 TooManyDeaths = true;
                 TimesDied = 0;
-                Relocate();
             }
             else
             {
                 Health = 100;
-                Relocate();
-                WaitTime(10);
             }
+            Relocate();
 
-        }
-
-        private void WaitTime(float amountOfTime)
-        {
-            delay = amountOfTime;
-            trigger = true;
         }
 
         public override void Relocate()
