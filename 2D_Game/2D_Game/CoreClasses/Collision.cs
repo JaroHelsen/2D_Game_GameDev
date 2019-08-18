@@ -38,6 +38,13 @@ namespace _2D_Game.Main
             blokken = blokArray;
             enemies = _enemy;
         }
+        public Collision(Hero _hero, Blok[,] blokArray)
+        {
+            thisHero = _hero;
+            blokken = blokArray;
+            game = new Game1();
+            enemies = null;
+        }
         #endregion
 
         #region CollisionCheck

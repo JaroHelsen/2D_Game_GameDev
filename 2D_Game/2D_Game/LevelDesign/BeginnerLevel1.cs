@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _2D_Game.CoreClasses;
-using _2D_Game.LevelDesign.Interfaces;
-using _2D_Game.Main;
 using _2D_Game.MovingSprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -13,55 +11,52 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace _2D_Game.LevelDesign
 {
-    class Level2 : LevelFactoryWithEnemies, ILevelfactory_Enemies
+    class BeginnerLevel1 : LevelFactory
     {
-        public Level2(ContentManager _content, Hero myHero )
+        public BeginnerLevel1(ContentManager _content, Hero myHero)
         {
-
-            enemies = new List<Enemies>();
-            CreateEnemies(_content);
             tileArray = new byte[,]
             {
                 {2,1,1,1,1,1,1,1},
-                {0,0,2,0,0,0,2,1},
-                {0,0,2,0,0,0,2,1},
-                {0,0,2,0,0,0,2,1},
                 {0,0,0,0,0,0,2,1},
                 {0,0,0,0,0,0,2,1},
-                {2,1,1,1,0,0,2,1},
-                {0,0,0,0,0,0,3,1},
-                {0,0,0,0,0,2,3,1},
-                {0,0,0,0,0,0,3,1},
-                {0,0,0,0,0,0,3,1},
-                {0,0,0,0,2,1,1,1},
-                {0,0,0,0,2,1,1,1},
-                {0,0,0,2,1,1,1,1},
-                {0,0,0,0,0,0,3,1},
-                {0,0,0,0,0,0,3,1},
-                {0,0,2,0,0,0,3,1},
-                {0,0,0,0,0,0,3,1},
-                {0,0,0,0,0,0,3,1},
-                {0,0,0,0,2,0,3,1},
+                {0,0,0,0,0,0,2,1},
+                {0,0,0,0,0,0,2,1},
                 {0,0,0,0,0,2,1,1},
-                {0,0,0,2,0,0,2,1},
-                {0,0,2,0,0,0,2,1},
-                {0,0,2,0,0,0,2,1},
-                {0,0,2,0,0,0,2,1},
-                {0,0,0,0,0,0,2,1},
-                {0,0,0,0,0,0,2,1},
                 {0,0,0,0,2,1,1,1},
+                {0,0,0,0,0,0,3,1},
+                {0,0,0,0,0,0,3,1},
+                {0,0,0,2,0,0,3,1},
+                {0,0,0,0,0,0,3,1},
                 {0,0,0,0,0,2,1,1},
-                {0,0,0,2,0,0,2,1},
-                {0,0,0,0,0,0,2,1},
-                {0,0,0,0,0,0,2,1},
-                {0,0,0,2,0,0,2,1},
-                {0,0,0,0,0,0,2,1},
-                {0,0,2,0,0,0,2,1},
-                {0,0,2,0,0,0,3,1},
+                {0,0,0,0,2,1,1,1},
+                {0,0,0,0,2,1,1,1},
+                {0,0,0,0,0,0,3,1},
                 {0,0,0,0,0,0,3,1},
                 {0,0,0,2,0,0,3,1},
                 {0,0,0,0,0,0,3,1},
                 {0,0,0,0,0,0,3,1},
+                {0,0,2,0,0,0,3,1},
+                {0,0,0,0,0,2,1,1},
+                {0,0,0,0,0,0,0,2},
+                {0,0,0,0,2,0,0,2},
+                {0,0,0,0,0,0,0,2},
+                {0,0,0,0,0,0,0,2},
+                {0,0,0,0,0,0,2,1},
+                {0,0,0,0,0,2,1,1},
+                {0,0,0,0,2,1,1,1},
+                {0,0,0,0,0,2,1,1},
+                {0,0,0,2,0,0,2,1},
+                {0,0,0,0,0,0,2,1},
+                {0,0,0,0,0,0,2,1},
+                {0,0,0,2,0,0,2,1},
+                {0,0,0,0,0,0,2,1},
+                {0,0,2,0,0,0,2,1},
+                {0,0,2,0,0,0,2,1},
+                {0,0,0,0,0,0,2,1},
+                {0,0,0,2,0,0,2,1},
+                {0,0,0,0,0,0,2,1},
+                {0,0,0,0,0,0,2,1},
                 {0,0,0,2,1,1,1,1},
                 {0,0,0,2,1,1,1,1},
                 {0,0,2,1,1,1,1,1},
@@ -78,21 +73,21 @@ namespace _2D_Game.LevelDesign
                 {0,0,0,0,0,0,2,1},
                 {0,0,0,0,0,0,0,2},
                 {0,0,0,0,2,0,0,2},
-                {0,0,0,0,2,0,2,1},
-                {0,0,0,0,0,0,3,1},
+                {0,0,0,0,0,0,2,1},
                 {0,0,0,2,0,0,3,1},
                 {0,0,0,0,0,0,3,1},
                 {0,0,2,0,0,0,3,1},
+                {0,0,0,0,0,0,3,1},
                 {0,0,0,0,0,0,3,1},
                 {0,0,0,0,2,0,3,1},
                 {0,0,0,0,0,2,1,1},
                 {0,0,0,0,0,0,2,1},
                 {0,0,0,2,0,0,2,1},
-                {0,0,2,0,0,0,2,1},
+                {0,0,0,2,0,0,2,1},
                 {0,0,0,0,0,0,0,2},
                 {0,0,0,0,0,0,0,2},
-                {0,0,2,1,0,0,0,2},
-                {0,0,2,0,0,0,0,2},
+                {0,0,0,2,0,0,0,2},
+                {0,0,0,0,0,0,0,2},
                 {0,0,2,0,0,0,0,2},
                 {0,0,0,0,0,0,0,2},
                 {0,0,0,0,0,0,0,2},
@@ -100,26 +95,26 @@ namespace _2D_Game.LevelDesign
                 {0,0,0,0,0,0,0,2},
                 {0,0,0,0,2,1,1,1},
                 {0,0,0,0,0,2,1,1},
-                {0,0,0,2,0,0,2,1},
-                {0,0,0,2,0,0,2,1},
-                {0,0,0,0,0,0,2,1},
-                {0,0,0,0,0,0,2,1},
                 {0,0,0,2,0,0,3,1},
                 {0,0,0,0,0,0,3,1},
-                {0,0,0,0,0,0,2,1},
-                {0,0,2,0,0,0,0,2},
+                {0,0,0,0,0,0,3,1},
+                {0,0,0,0,2,0,2,1},
                 {0,0,0,0,0,0,0,2},
-                {0,0,2,0,0,2,1,1},
-                {0,0,0,0,0,0,2,1},
-                {0,0,0,0,2,0,2,1},
-                {0,0,0,0,2,0,0,2},
-                {0,0,0,0,2,0,2,1},
-                {0,0,0,0,0,0,3,1},
-                {0,0,0,2,0,0,3,1},
-                {0,0,0,0,0,0,3,1},
-                {0,0,2,0,0,0,3,1},
+                {0,0,0,0,0,0,0,2},
                 {0,0,0,0,0,0,2,1},
                 {0,0,0,0,0,2,1,1},
+                {0,0,0,0,0,0,2,1},
+                {0,0,0,0,2,0,2,1},
+                {0,0,0,2,1,0,2,1},
+                {0,0,2,1,0,0,2,1},
+                {0,0,0,0,0,0,0,2},
+                {0,0,0,0,0,0,0,2},
+                {0,2,0,0,0,0,0,2},
+                {0,0,0,0,2,0,0,2},
+                {0,0,0,0,0,0,2,1},
+                {0,0,0,2,0,0,2,1},
+                {0,0,0,0,0,0,2,1},
+                {0,0,0,0,0,0,2,1},
                 {0,0,0,0,2,1,1,1},
                 {0,0,0,2,1,1,1,1},
                 {0,0,2,1,1,1,1,1},
@@ -132,8 +127,7 @@ namespace _2D_Game.LevelDesign
             };
 
             blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
-            heroCollisionChecker = new HeroCollision(myHero, blokArray, enemies);
-            enemyCollisionChecker = new EnemyCollision(blokArray, enemies);
+            heroCollisionChecker = new HeroCollision(myHero, blokArray);
         }
 
         public override void DrawWorld(SpriteBatch spriteBatch)
@@ -148,30 +142,13 @@ namespace _2D_Game.LevelDesign
                     }
                 }
             }
-            foreach (Enemies enemy in enemies)
-            {
-                enemy.Draw(spriteBatch);
-            }
         }
 
         public override void CheckForCollision(GameTime gameTime, Hero hero, ContentManager content)
         {
             hero.Update(gameTime);
-            foreach (Enemies enemy in enemies)
-            {
-                enemy.Update(gameTime);
-            }
 
             heroCollisionChecker.CheckCollision();
-            enemyCollisionChecker.CheckCollision();
-
-            for (int i = enemies.Count - 1; i >= 0; i--)
-            {
-                if (enemies[i].Health == 0)
-                {
-                    enemies[i].Position.X = -1000;
-                }
-            }
             foreach (Blok blok in blokArray)
             {
                 if (blok != null)
@@ -188,13 +165,14 @@ namespace _2D_Game.LevelDesign
             }
         }
 
-        public override void CreateEnemies(ContentManager content)
+        public override void EndOfLevel(ContentManager content)
         {
-            enemies = enemyCreator.GenerateEnemies(30, content.Load<Texture2D>("EnemyWalker"), new Vector2(0, -100), 12301);
-            foreach (Enemies enemy in enemies)
-            {
-                enemy.Relocator = enemy.Position;
-            }
+            LevelEnd = true;
+        }
+
+        public override void ResetLevel()
+        {
+            LevelEnd = false;
         }
     }
 }

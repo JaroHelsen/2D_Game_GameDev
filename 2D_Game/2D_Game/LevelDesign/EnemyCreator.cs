@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _2D_Game.LevelDesign
 {
-    class EnemyCreator
+    public class EnemyCreator
     {
         public List<Enemies> GeneratedEnemies { get; set; }
         private Random rand;

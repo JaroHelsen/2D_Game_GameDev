@@ -25,7 +25,8 @@ namespace _2D_Game
         private Texture2D myBackground, menuImage, diedImage, wonImage;
         private Rectangle mainFrame;
 
-        LevelFactory level1, level2;
+        LevelFactoryWithEnemies level1, level2;
+        LevelFactory levelBeginner;
 
         //GameStates
         public enum GameState

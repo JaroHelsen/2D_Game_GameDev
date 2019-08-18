@@ -1,4 +1,5 @@
 ﻿using _2D_Game.CoreClasses;
+using _2D_Game.LevelDesign.Interfaces;
 using _2D_Game.Main;
 using _2D_Game.MovingSprites;
 using Microsoft.Xna.Framework;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace _2D_Game.LevelDesign
 {
-    class Level1: LevelFactory
+    class Level1: LevelFactoryWithEnemies, ILevelfactory_Enemies
     {
         /// <summary>
         /// Constructor for the level 1.
@@ -146,14 +147,6 @@ namespace _2D_Game.LevelDesign
             foreach (Enemies enemy in enemies)
             {
                 enemy.Relocator = enemy.Position;
-            }
-        }
-
-        public override void ReturnEnemiesToPlaces()
-        {
-            foreach (Enemies enemy in enemies)
-            {
-                enemy.Relocate();
             }
         }
     }

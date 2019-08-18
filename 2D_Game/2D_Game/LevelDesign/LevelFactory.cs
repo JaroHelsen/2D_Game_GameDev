@@ -12,12 +12,10 @@ using System.Threading.Tasks;
 
 namespace _2D_Game.LevelDesign
 {
-    abstract class LevelFactory
+    public abstract class LevelFactory
     {
         //ContentManager content;
-        protected Collision heroCollisionChecker, enemyCollisionChecker;
-        public List<Enemies> enemies;
-        protected EnemyCreator enemyCreator = new EnemyCreator();
+        protected Collision heroCollisionChecker;
         public Texture2D GroundTexture { get; set; }
         public Texture2D CrateTexture { get; set; }
         public Boolean LevelEnd { get; set; }
@@ -69,71 +67,72 @@ namespace _2D_Game.LevelDesign
             }
         }
 
-        public void DestroyLevel()
-        {
-            Array.Clear(blokArray, 0, blokArray.Length);
-            Array.Clear(tileArray, 0, tileArray.Length);
-            enemies.Clear();
+        //public void DestroyLevel()
+        //{
+        //    Array.Clear(blokArray, 0, blokArray.Length);
+        //    Array.Clear(tileArray, 0, tileArray.Length);
+        //    enemies.Clear();
 
-        }
+        //}
 
-        public void DrawWorld(SpriteBatch spriteBatch)
-        {
-            for (int i = 0; i < tileArray.GetLength(0); i++)
-            {
-                for (int j = 0; j < tileArray.GetLength(1); j++)
-                {
-                    if (blokArray[i, j] != null)
-                    {
-                        blokArray[i, j].Draw(spriteBatch);
-                    }
-                }
-            }
-            foreach (Enemies enemy in enemies)
-            {
-                enemy.Draw(spriteBatch);
-            }
-            
-            //thisHero.Draw(spriteBatch);
-        }
+        public abstract void DrawWorld(SpriteBatch spriteBatch);
+        //public void DrawWorld(SpriteBatch spriteBatch)
+        //{
+        //    for (int i = 0; i < tileArray.GetLength(0); i++)
+        //    {
+        //        for (int j = 0; j < tileArray.GetLength(1); j++)
+        //        {
+        //            if (blokArray[i, j] != null)
+        //            {
+        //                blokArray[i, j].Draw(spriteBatch);
+        //            }
+        //        }
+        //    }
+        //    foreach (Enemies enemy in enemies)
+        //    {
+        //        enemy.Draw(spriteBatch);
+        //    }
+        //}
 
-        public void CheckForCollision(GameTime gameTime, Hero hero, ContentManager content)
-        {
-            hero.Update(gameTime);
-            foreach (Enemies enemy in enemies)
-            {
-                enemy.Update(gameTime);
-            }
+        public abstract void CheckForCollision(GameTime gameTime, Hero hero, ContentManager content);
+        //public void CheckForCollision(GameTime gameTime, Hero hero, ContentManager content)
+        //{
+        //    hero.Update(gameTime);
+        //    foreach (Enemies enemy in enemies)
+        //    {
+        //        enemy.Update(gameTime);
+        //    }
 
-            heroCollisionChecker.CheckCollision();
-            enemyCollisionChecker.CheckCollision();
+        //    heroCollisionChecker.CheckCollision();
+        //    enemyCollisionChecker.CheckCollision();
 
-            for (int i = enemies.Count -  1 ; i >= 0 ; i--)
-            {
-                if (enemies[i].Health == 0)
-                {
-                    enemies[i].Position.X = -1000;
-                }
-            }
-            foreach (Blok blok in blokArray)
-            {
-                if (blok != null)
-                {
-                    if (blok.FinishLine)
-                    {
-                        Console.WriteLine("This is the end");
-                        Console.WriteLine("-------------------------------------------------------------------------");
-                        Console.WriteLine("");
-                        LevelEnd = true;
-                        enemies.Clear();
-                        CreateEnemies(content);
-                    }
-                }
-                
-            }
-        }
+        //    for (int i = enemies.Count -  1 ; i >= 0 ; i--)
+        //    {
+        //        if (enemies[i].Health == 0)
+        //        {
+        //            enemies[i].Position.X = -1000;
+        //        }
+        //    }
+        //    foreach (Blok blok in blokArray)
+        //    {
+        //        if (blok != null)
+        //        {
+        //            if (blok.FinishLine)
+        //            {
+        //                Console.WriteLine("This is the end");
+        //                Console.WriteLine("-------------------------------------------------------------------------");
+        //                Console.WriteLine("");
+        //                EndOfLevel(content);
+        //            }
+        //        }
 
-        public abstract void CreateEnemies(ContentManager content);
-        public abstract void ReturnEnemiesToPlaces();
+        //    }
+        //}
+
+        public abstract void ResetLevel();
+
+        public abstract void EndOfLevel(ContentManager content);
+
+        
     }
 }

@@ -15,6 +15,11 @@ namespace _2D_Game.CoreClasses
         {
         }
 
+        public HeroCollision(Hero _hero, Blok[,] blokArray): base(_hero,  blokArray)
+        {
+            
+        }
+
         public override void CheckCollision()
         {
             //Console.WriteLine("word ik opgeroepen?");
@@ -110,20 +115,24 @@ namespace _2D_Game.CoreClasses
                 }
 
             }
-            foreach (Enemies enemy in enemies)
+            if (enemies != null)
             {
-                //Check for collision with hero and a blok underneath it
-                if (thisHero.CollisionRectangle.Bottom + 25 >= enemy.CollisionRectangle.Top && thisHero.CollisionRectangle.Top < enemy.CollisionRectangle.Top &&((thisHero.CollisionRectangle.Left + 15 >= enemy.CollisionRectangle.Left && thisHero.CollisionRectangle.Left + 15 <= enemy.CollisionRectangle.Right) || (thisHero.CollisionRectangle.Right - 15 >= enemy.CollisionRectangle.Left && thisHero.CollisionRectangle.Right - 15 <= enemy.CollisionRectangle.Right)) && thisHero.HasJumped)
+                foreach (Enemies enemy in enemies)
                 {
-                    enemy.HasDied();
-                    Console.WriteLine("GOT EMMMMMMMMM");
-                }
-                else if (thisHero.CollisionRectangle.Intersects(enemy.CollisionRectangle))
-                {
-                    Console.WriteLine("HELP IK BEN GERAAKT");
-                    Auwch = true;
+                    //Check for collision with hero and a blok underneath it
+                    if (thisHero.CollisionRectangle.Bottom + 25 >= enemy.CollisionRectangle.Top && thisHero.CollisionRectangle.Top < enemy.CollisionRectangle.Top && ((thisHero.CollisionRectangle.Left + 15 >= enemy.CollisionRectangle.Left && thisHero.CollisionRectangle.Left + 15 <= enemy.CollisionRectangle.Right) || (thisHero.CollisionRectangle.Right - 15 >= enemy.CollisionRectangle.Left && thisHero.CollisionRectangle.Right - 15 <= enemy.CollisionRectangle.Right)) && thisHero.HasJumped)
+                    {
+                        enemy.HasDied();
+                        Console.WriteLine("GOT EMMMMMMMMM");
+                    }
+                    else if (thisHero.CollisionRectangle.Intersects(enemy.CollisionRectangle))
+                    {
+                        Console.WriteLine("HELP IK BEN GERAAKT");
+                        Auwch = true;
+                    }
                 }
             }
+            
             if (!onPlat)
             {
                 thisHero.HasJumped = true;
