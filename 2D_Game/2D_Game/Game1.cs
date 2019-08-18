@@ -34,6 +34,7 @@ namespace _2D_Game
             Menu,
             level1,
             level2,
+            Beginner,
             GameWon,
             GameOver
         }
@@ -90,6 +91,9 @@ namespace _2D_Game
             level2 = new Level2(Content, hero);
             level2.CreateLevel(Content);
 
+            levelBeginner = new BeginnerLevel1(Content, hero);
+            levelBeginner.CreateLevel(Content);
+
             camera = new Camera();
         }
 
@@ -125,6 +129,30 @@ namespace _2D_Game
                         hero.Relocate();
                         gameState = GameState.level1;
                         //Hier dingen zetten die nu moeten laden (slechts 1x)
+                    }
+                    if (keyState.IsKeyDown(Keys.T))
+                    {
+
+                        hero.TimesDied = 0;
+                        hero.Relocate();
+                        gameState = GameState.Beginner;
+                    }
+                    break;
+                case GameState.Beginner:
+                    hero.Update(gameTime);
+                    levelBeginner.CheckForCollision(gameTime, hero, Content);
+                    camera.Follow(hero.Position);
+                    if (levelBeginner.LevelEnd)
+                    {
+                        hero.TimesDied = 0;
+                        hero.Relocate();
+                        gameState = GameState.GameWon;
+                    }
+                    if (hero.TooManyDeaths)
+                    {
+                        gameState = GameState.GameOver;
+                        hero.TimesDied = 0;
+                        hero.TooManyDeaths = false;
                     }
                     break;
                 case GameState.level1:
@@ -212,6 +240,12 @@ namespace _2D_Game
                 case GameState.Menu:
                     spriteBatch.Begin();
                     spriteBatch.Draw(menuImage, mainFrame, Color.Beige);
+                    spriteBatch.End();
+                    break;
+                case GameState.Beginner:
+                    spriteBatch.Begin(transformMatrix: camera.Transform);
+                    levelBeginner.DrawWorld(spriteBatch);
+                    hero.Draw(spriteBatch);
                     spriteBatch.End();
                     break;
                 case GameState.level1:
