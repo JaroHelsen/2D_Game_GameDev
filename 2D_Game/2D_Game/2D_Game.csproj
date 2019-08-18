@@ -55,7 +55,6 @@
     <Compile Include="LevelDesign\Blok.cs" />
     <Compile Include="LevelDesign\EnemyCreator.cs" />
     <Compile Include="LevelDesign\Interfaces\ILevelfactory_Enemies.cs" />
-    <Compile Include="LevelDesign\Interfaces\ILevelfactory_No_Enemies.cs" />
     <Compile Include="LevelDesign\Level1.cs" />
     <Compile Include="LevelDesign\Level2.cs" />
     <Compile Include="LevelDesign\LevelFactory.cs" />

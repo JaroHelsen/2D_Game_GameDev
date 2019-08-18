@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace _2D_Game.MovingSprites
 {
@@ -24,6 +25,8 @@ namespace _2D_Game.MovingSprites
         #region Variables
         public BedieningPijltjes input;
         private Vector2 relocator;
+        private float delay = 0;
+        private bool trigger = false;
         //Animations
         private AnimationMotion _runningRightAnimation;
         private AnimationMotion _runningLeftAnimation;
@@ -178,9 +181,16 @@ namespace _2D_Game.MovingSprites
             {
                 Health = 100;
                 Relocate();
+                WaitTime(10);
             }
-            System.Threading.Thread.Sleep(250);
+            //System.Threading.Thread.Sleep(250);
 
+        }
+
+        private void WaitTime(float amountOfTime)
+        {
+            delay = amountOfTime;
+            trigger = true;
         }
 
         public override void Relocate()
