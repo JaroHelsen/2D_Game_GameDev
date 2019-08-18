@@ -50,6 +50,7 @@
     <Compile Include="CoreClasses\Camera.cs" />
     <Compile Include="CoreClasses\EnemyCollision.cs" />
     <Compile Include="CoreClasses\HeroCollision.cs" />
+    <Compile Include="CoreClasses\HeroCollisionWithEnemies.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="LevelDesign\BeginnerLevel1.cs" />
     <Compile Include="LevelDesign\Blok.cs" />

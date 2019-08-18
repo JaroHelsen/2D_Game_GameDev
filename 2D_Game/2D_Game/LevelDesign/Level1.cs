@@ -137,7 +137,7 @@ namespace _2D_Game.LevelDesign
             };
 
             blokArray = new Blok[tileArray.GetLength(0), tileArray.GetLength(1)];
-            heroCollisionChecker = new HeroCollision(myHero, blokArray, enemies);
+            heroCollisionChecker = new HeroCollisionWithEnemies(myHero, blokArray, enemies);
             enemyCollisionChecker = new EnemyCollision(blokArray, enemies);
         }
 

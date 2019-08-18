@@ -9,19 +9,16 @@ using System.Threading.Tasks;
 
 namespace _2D_Game.CoreClasses
 {
-    class HeroCollision : Collision
+    class HeroCollisionWithEnemies : Collision
     {
-        public HeroCollision(Hero _hero, Blok[,] blokArray): base(_hero,  blokArray)
+        public HeroCollisionWithEnemies(Hero _hero, Blok[,] blokArray, List<Enemies> _enemy) : base(_hero, blokArray, _enemy)
         {
-            
         }
 
         public override void CheckCollision()
         {
-            //Console.WriteLine("word ik opgeroepen?");
             onPlat = false;
             Auwch = false;
-            //thisHero.BootsOnTheGround = false;
             foreach (Blok blok in blokken)
             {
 
@@ -38,7 +35,8 @@ namespace _2D_Game.CoreClasses
                             {
                                 blok.OnPLatform = false;
                                 Auwch = true;
-                            } else
+                            }
+                            else
                             {
                                 thisHero.Position.X += 6;
                                 xMovement = true;
@@ -103,7 +101,6 @@ namespace _2D_Game.CoreClasses
                 {
                     if (blok.OnPLatform)
                     {
-                        //Console.WriteLine("grond");
                         thisHero.BootsOnTheGround = true;
                         onPlat = true;
                         blok.OnPLatform = false;
@@ -111,12 +108,25 @@ namespace _2D_Game.CoreClasses
                 }
 
             }
-            
+            foreach (Enemies enemy in enemies)
+            {
+                //Check for collision with hero and a blok underneath it
+                if (thisHero.CollisionRectangle.Bottom + 25 >= enemy.CollisionRectangle.Top && thisHero.CollisionRectangle.Top < enemy.CollisionRectangle.Top && ((thisHero.CollisionRectangle.Left + 15 >= enemy.CollisionRectangle.Left && thisHero.CollisionRectangle.Left + 15 <= enemy.CollisionRectangle.Right) || (thisHero.CollisionRectangle.Right - 15 >= enemy.CollisionRectangle.Left && thisHero.CollisionRectangle.Right - 15 <= enemy.CollisionRectangle.Right)) && thisHero.HasJumped)
+                {
+                    enemy.HasDied();
+                    Console.WriteLine("GOT EMMMMMMMMM");
+                }
+                else if (thisHero.CollisionRectangle.Intersects(enemy.CollisionRectangle))
+                {
+                    Console.WriteLine("HELP IK BEN GERAAKT");
+                    Auwch = true;
+                }
+            }
+
             if (!onPlat)
             {
                 thisHero.HasJumped = true;
                 thisHero.BootsOnTheGround = false;
-                //Console.WriteLine("onplat");
             }
             if (Auwch)
             {
