@@ -159,9 +159,7 @@ namespace _2D_Game
                     }
                     break;
                 case GameState.Beginner:
-                    hero.Update(gameTime);
-                    levelBeginner.CheckForCollision(gameTime, hero, Content);
-                    camera.Follow(hero.Position);
+                    UpdateLevel(gameTime);
                     if (levelBeginner.LevelEnd)
                     {
                         ResetHero();
@@ -176,9 +174,7 @@ namespace _2D_Game
                     }
                     break;
                 case GameState.level1:
-                    hero.Update(gameTime);
-                    level1.CheckForCollision(gameTime, hero, Content);
-                    camera.Follow(hero.Position);
+                    UpdateLevel(gameTime);
                     if (level1.LevelEnd)
                     {
                         ResetHero();
@@ -195,9 +191,7 @@ namespace _2D_Game
                     }
                     break;
                 case GameState.level2:
-                    hero.Update(gameTime);
-                    level2.CheckForCollision(gameTime, hero, Content);
-                    camera.Follow(hero.Position);
+                    UpdateLevel(gameTime);
                     if (level2.LevelEnd)
                     {
                         ResetHero();
@@ -244,6 +238,26 @@ namespace _2D_Game
                     break;
             }
             base.Update(gameTime);
+        }
+
+        private void UpdateLevel(GameTime gameTime)
+        {
+            hero.Update(gameTime);
+            switch (gameState)
+            {
+                case GameState.level1:
+                    level1.CheckForCollision(gameTime, hero, Content);
+                    break;
+                case GameState.level2:
+                    level2.CheckForCollision(gameTime, hero, Content);
+                    break;
+                case GameState.Beginner:
+                    levelBeginner.CheckForCollision(gameTime, hero, Content);
+                    break;
+                default:
+                    break;
+            }
+            camera.Follow(hero.Position);
         }
 
         private void HeroDiedTooMuch()
@@ -306,22 +320,13 @@ namespace _2D_Game
                     DrawMenus(menuImage);
                     break;
                 case GameState.Beginner:
-                    spriteBatch.Begin(transformMatrix: camera.Transform);
-                    levelBeginner.DrawWorld(spriteBatch);
-                    hero.Draw(spriteBatch);
-                    spriteBatch.End();
+                    DrawLevel(spriteBatch);
                     break;
                 case GameState.level1:
-                    spriteBatch.Begin(transformMatrix: camera.Transform);
-                    level1.DrawWorld(spriteBatch);
-                    hero.Draw(spriteBatch);
-                    spriteBatch.End();
+                    DrawLevel(spriteBatch);
                     break;
                 case GameState.level2:
-                    spriteBatch.Begin(transformMatrix: camera.Transform);
-                    level2.DrawWorld(spriteBatch);
-                    hero.Draw(spriteBatch);
-                    spriteBatch.End();
+                    DrawLevel(spriteBatch);
                     break;
                 case GameState.Info:
                     DrawMenus(infoImage);
@@ -339,6 +344,27 @@ namespace _2D_Game
                     break;
             }
             base.Draw(gameTime);
+        }
+
+        private void DrawLevel(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin(transformMatrix: camera.Transform);
+            switch (gameState)
+            {
+                case GameState.level1:
+                    level1.DrawWorld(spriteBatch);
+                    break;
+                case GameState.level2:
+                    level2.DrawWorld(spriteBatch);
+                    break;
+                case GameState.Beginner:
+                    levelBeginner.DrawWorld(spriteBatch);
+                    break;
+                default:
+                    break;
+            }
+            hero.Draw(spriteBatch);
+            spriteBatch.End();
         }
 
         private void DrawMenus(Texture2D image)
