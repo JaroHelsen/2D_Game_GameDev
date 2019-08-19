@@ -23,6 +23,12 @@ namespace _2D_Game.Main
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Constructor for the class with enemies and hero included.
+        /// </summary>
+        /// <param name="_hero"></param>
+        /// <param name="blokArray"></param>
+        /// <param name="_enemy"></param>
         public Collision(Hero _hero, Blok[,] blokArray, List<Enemies> _enemy)
         {
             thisHero = _hero;
@@ -31,6 +37,11 @@ namespace _2D_Game.Main
             enemies = _enemy;
         }
 
+        /// <summary>
+        /// Constructor for the class with enemies included.
+        /// </summary>
+        /// <param name="blokArray"></param>
+        /// <param name="_enemy"></param>
         public Collision(Blok[,] blokArray, List<Enemies> _enemy)
         {
             thisHero = null;
@@ -38,6 +49,12 @@ namespace _2D_Game.Main
             blokken = blokArray;
             enemies = _enemy;
         }
+
+        /// <summary>
+        /// Constructor for the class with hero included.
+        /// </summary>
+        /// <param name="_hero"></param>
+        /// <param name="blokArray"></param>
         public Collision(Hero _hero, Blok[,] blokArray)
         {
             thisHero = _hero;
