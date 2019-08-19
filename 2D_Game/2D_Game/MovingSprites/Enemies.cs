@@ -91,7 +91,7 @@ namespace _2D_Game.MovingSprites
         {
             Position = Relocator;
             Health = 10;
-            goingLeft = false;
+            goingLeft = true;
             HasJumped = true;
         }
     }
