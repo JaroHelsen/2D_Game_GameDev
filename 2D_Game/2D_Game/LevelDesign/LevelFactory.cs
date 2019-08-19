@@ -14,20 +14,35 @@ namespace _2D_Game.LevelDesign
 {
     public abstract class LevelFactory
     {
-        //ContentManager content;
-        protected Collision heroCollisionChecker;
+        #region Properties
         public Texture2D GroundTexture { get; set; }
         public Texture2D CrateTexture { get; set; }
         public Boolean LevelEnd { get; set; }
+        #endregion
+
+        #region Variables
+        protected Collision heroCollisionChecker;
         protected byte[,] tileArray;
-
         protected Blok[,] blokArray;
+        #endregion
 
+        #region Constructor
+        /// <summary>
+        /// Constructor for the class.
+        /// Sets the LevelEnd to false so that there is no uncertainty when the level is created. This is the same for all levels.
+        /// </summary>
         public LevelFactory()
         {
             LevelEnd = false;
         }
+        #endregion
 
+        #region Methods
+        /// <summary>
+        /// Creates the level.
+        /// All the different kind of bloks will be generated and loaded (textures and position)
+        /// </summary>
+        /// <param name="content"></param>
         public void CreateLevel(ContentManager content)
         {
             for (int i = 0; i < tileArray.GetLength(0); i++)
@@ -67,6 +82,10 @@ namespace _2D_Game.LevelDesign
             }
         }
 
+        /// <summary>
+        /// DrawWorld, CheckForCollision, ResetLevel and EndOfLevel are all abstract because they differ for worlds with and without enemies.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public abstract void DrawWorld(SpriteBatch spriteBatch);
 
         public abstract void CheckForCollision(GameTime gameTime, Hero hero, ContentManager content);
@@ -74,7 +93,7 @@ namespace _2D_Game.LevelDesign
         public abstract void ResetLevel();
 
         public abstract void EndOfLevel(ContentManager content);
+        #endregion
 
-        
     }
 }
