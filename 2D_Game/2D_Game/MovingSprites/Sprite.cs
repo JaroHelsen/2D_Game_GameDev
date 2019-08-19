@@ -45,15 +45,20 @@ namespace _2D_Game.MovingSprites
         /// <param name="_position"></param>
         public Sprite(Vector2 _position)
         {
-            //Variable declaration
             Position = _position;
             Velocity = new Vector2(3, 0);
             goingLeft = false;
         }
 
+        /// <summary>
+        /// The constructor of the class.
+        /// All variables are set to specific values by the constructor. Better flexibility for enemies spawning system or for a future level going on a different route.
+        /// </summary>
+        /// <param name="_position"></param>
+        /// <param name="_velocity"></param>
+        /// <param name="_goingLeft"></param>
         public Sprite(Vector2 _position, Vector2 _velocity, bool _goingLeft)
         {
-            //Variable declaration
             Position = _position;
             Velocity = _velocity;
             goingLeft = _goingLeft;
@@ -62,7 +67,7 @@ namespace _2D_Game.MovingSprites
 
         #region Methods
         /// <summary>
-        /// Update and Draw methods for the hero and the enemies. 
+        /// Update, Draw, Hasdied and Relocate methods for the hero and the enemies. 
         /// Are declared abstract because they are unique to the subclass.
         /// </summary>
         /// <param name="gameTime"></param>
