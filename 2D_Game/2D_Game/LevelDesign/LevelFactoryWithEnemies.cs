@@ -14,10 +14,18 @@ namespace _2D_Game.LevelDesign
 {
     public abstract class LevelFactoryWithEnemies: LevelFactory, ILevelfactory_Enemies
     {
+        #region Variables
         public List<Enemies> enemies;
         protected EnemyCreator enemyCreator = new EnemyCreator();
         protected Collision enemyCollisionChecker;
+        #endregion
 
+        #region Methods
+        /// <summary>
+        /// Overrides the LevelFactory method DrawWorld from its super LevelFactory.
+        /// Draws the blocks and enemies for the level that calls it.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void DrawWorld(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < tileArray.GetLength(0); i++)
@@ -36,6 +44,13 @@ namespace _2D_Game.LevelDesign
             }
         }
 
+        /// <summary>
+        /// Overrides the LevelFactory method DrawWorld from its super LevelFactory.
+        /// Checks for collisions for the enemies and the hero inside the level.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="hero"></param>
+        /// <param name="content"></param>
         public override void CheckForCollision(GameTime gameTime, Hero hero, ContentManager content)
         {
             hero.Update(gameTime);
@@ -70,6 +85,9 @@ namespace _2D_Game.LevelDesign
             }
         }
 
+        /// <summary>
+        /// Resets the enemy locations to how they started.
+        /// </summary>
         public void ReturnEnemiesToPlaces()
         {
             foreach (Enemies enemy in enemies)
@@ -78,12 +96,19 @@ namespace _2D_Game.LevelDesign
             }
         }
 
+        /// <summary>
+        /// Resets the level so that levelend is false and the method ReturnEnemiesToPlaces is called.
+        /// </summary>
         public override void ResetLevel()
         {
             LevelEnd = false;
             ReturnEnemiesToPlaces();
         }
 
+        /// <summary>
+        /// Called when the end of the level has been reached.
+        /// </summary>
+        /// <param name="content"></param>
         public override void EndOfLevel(ContentManager content)
         {
             LevelEnd = true;
@@ -91,6 +116,11 @@ namespace _2D_Game.LevelDesign
             CreateEnemies(content);
         }
 
+        /// <summary>
+        /// Abstract method so that each level can have it's variation on this.
+        /// </summary>
+        /// <param name="content"></param>
         public abstract void CreateEnemies(ContentManager content);
+        #endregion
     }
 }
