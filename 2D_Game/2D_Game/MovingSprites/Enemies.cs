@@ -114,7 +114,7 @@ namespace _2D_Game.MovingSprites
         }
 
         /// <summary>
-        /// Method that gets called when the enemy has to respawn after the restart of a level.
+        /// Method that gets called when the enemy has to respawn after the restart of a level. It also resets it's orientation and health.
         /// </summary>
         public override void Relocate()
         {
