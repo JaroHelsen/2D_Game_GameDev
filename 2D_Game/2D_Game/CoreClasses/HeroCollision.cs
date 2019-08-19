@@ -30,10 +30,8 @@ namespace _2D_Game.CoreClasses
         /// </summary>
         public override void CheckCollision()
         {
-            //Console.WriteLine("word ik opgeroepen?");
             onPlat = false;
             Auwch = false;
-            //thisHero.BootsOnTheGround = false;
             foreach (Blok blok in blokken)
             {
 
@@ -115,7 +113,6 @@ namespace _2D_Game.CoreClasses
                 {
                     if (blok.OnPLatform)
                     {
-                        //Console.WriteLine("grond");
                         thisHero.BootsOnTheGround = true;
                         onPlat = true;
                         blok.OnPLatform = false;
@@ -128,7 +125,6 @@ namespace _2D_Game.CoreClasses
             {
                 thisHero.HasJumped = true;
                 thisHero.BootsOnTheGround = false;
-                //Console.WriteLine("onplat");
             }
             if (Auwch)
             {

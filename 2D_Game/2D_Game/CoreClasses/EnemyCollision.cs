@@ -11,15 +11,25 @@ namespace _2D_Game.CoreClasses
 {
     class EnemyCollision : Collision
     {
+        #region Constructor
+        /// <summary>
+        /// Constructor for the class.
+        /// </summary>
+        /// <param name="blokArray"></param>
+        /// <param name="_enemy"></param>
         public EnemyCollision(Blok[,] blokArray, List<Enemies> _enemy) : base(blokArray, _enemy)
         {
         }
+        #endregion
 
+        #region Methods
+        /// <summary>
+        /// Checks for collision between the enemies and the environment.
+        /// </summary>
         public override void CheckCollision()
         {
             foreach (Enemies enemy in enemies)
             {
-                //Console.WriteLine("enemy check?");
                 Console.WriteLine(enemy.HasJumped);
                 onPlat = false;
                 Auwch = false;
@@ -73,7 +83,6 @@ namespace _2D_Game.CoreClasses
                     {
                         if (blok.OnPLatform)
                         {
-                            //Console.WriteLine("grond enemy");
                             enemy.BootsOnTheGround = true;
                             onPlat = true;
                             blok.OnPLatform = false;
@@ -85,7 +94,6 @@ namespace _2D_Game.CoreClasses
                 {
                     enemy.HasJumped = true;
                     enemy.BootsOnTheGround = false;
-                    //Console.WriteLine("onplat enemy");
                 }
                 if (Auwch)
                 {
@@ -95,5 +103,6 @@ namespace _2D_Game.CoreClasses
             }
 
         }
+        #endregion
     }
-    }
+}
