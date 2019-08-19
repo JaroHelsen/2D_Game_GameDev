@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace _2D_Game.LevelDesign
 {
-    class BeginnerLevel1 : LevelFactoryWithoutEnmies
+    class BeginnerLevel1 : LevelFactoryWithoutEnemies
     {
         #region Constructor
         /// <summary>
@@ -137,69 +137,5 @@ namespace _2D_Game.LevelDesign
             heroCollisionChecker = new HeroCollision(myHero, blokArray);
         }
         #endregion
-
-        //public override void DrawWorld(SpriteBatch spriteBatch)
-        //{
-        //    for (int i = 0; i < tileArray.GetLength(0); i++)
-        //    {
-        //        for (int j = 0; j < tileArray.GetLength(1); j++)
-        //        {
-        //            if (blokArray[i, j] != null)
-        //            {
-        //                blokArray[i, j].Draw(spriteBatch);
-        //            }
-        //        }
-        //    }
-        //}
-
-        //public override void CheckForCollision(GameTime gameTime, Hero hero, ContentManager content)
-        //{
-        //    hero.Update(gameTime);
-
-        //    heroCollisionChecker.CheckCollision();
-        //    foreach (Blok blok in blokArray)
-        //    {
-        //        if (blok != null)
-        //        {
-        //            if (blok.FinishLine)
-        //            {
-        //                Console.WriteLine("This is the end");
-        //                Console.WriteLine("-------------------------------------------------------------------------");
-        //                Console.WriteLine("");
-        //                EndOfLevel(content);
-        //            }
-        //        }
-
-        //    }
-        //}
-
-        //public override void EndOfLevel(ContentManager content)
-        //{
-        //    LevelEnd = true;
-        //}
-
-        //public override void ResetLevel()
-        //{
-        //    LevelEnd = false;
-        //}
-        public override void CheckForCollision(GameTime gameTime, Hero hero, ContentManager content)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void DrawWorld(SpriteBatch spriteBatch)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void EndOfLevel(ContentManager content)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void ResetLevel()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
