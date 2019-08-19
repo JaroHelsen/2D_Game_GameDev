@@ -120,7 +120,7 @@ namespace _2D_Game
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
+        /// checking for collisions, gathering input, playing audio and checking the gamestate.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
@@ -129,7 +129,6 @@ namespace _2D_Game
                 Exit();
             KeyboardState keyState;
             Vector2 center = new Vector2(mainFrame.Left + mainFrame.Width / 2, mainFrame.Top + mainFrame.Height / 2);
-            //Updating state
             switch (gameState)
             {
                 case GameState.Menu:
@@ -240,6 +239,10 @@ namespace _2D_Game
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Update methods for the levels during playing of the game.
+        /// </summary>
+        /// <param name="gameTime"></param>
         private void UpdateLevel(GameTime gameTime)
         {
             hero.Update(gameTime);
@@ -260,18 +263,31 @@ namespace _2D_Game
             camera.Follow(hero.Position);
         }
 
+        /// <summary>
+        /// Default method that is called when the player has died too many times and so the gameover screen is shown. 
+        /// It sets the toomanydeaths to false so the player can restart.
+        /// </summary>
         private void HeroDiedTooMuch()
         {
             hero.TooManyDeaths = false;
             ResetHero();
         }
 
+        /// <summary>
+        /// Method called when the player has died too many times or has finished a level. 
+        /// Simply relocates the hero to the starting  position and resets timesdied.
+        /// </summary>
         private void ResetHero()
         {
             hero.TimesDied = 0;
             hero.Relocate();
         }
 
+        /// <summary>
+        /// Checks which gamestate was the previous state so the player can redo a level without having to go through a previous one,
+        /// or if the player wants to go to the main menu.
+        /// </summary>
+        /// <param name="keyState"></param>
         private void ReturnToGameOrMenuCheck(KeyboardState keyState)
         {
             if (keyState.IsKeyDown(Keys.R))
@@ -346,6 +362,10 @@ namespace _2D_Game
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// Switch method that lets the respective level draw for each gamestate.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         private void DrawLevel(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(transformMatrix: camera.Transform);
@@ -367,6 +387,10 @@ namespace _2D_Game
             spriteBatch.End();
         }
 
+        /// <summary>
+        /// Method for the menu images to be drawn. The image is received as a parameter so no switch statement is needed.
+        /// </summary>
+        /// <param name="image"></param>
         private void DrawMenus(Texture2D image)
         {
             spriteBatch.Begin();
