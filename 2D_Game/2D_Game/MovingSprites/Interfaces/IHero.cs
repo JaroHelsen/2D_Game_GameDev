@@ -10,10 +10,10 @@ namespace _2D_Game.MovingSprites.Interfaces
 {
     interface IHero
     {
-        #region Properties
         /// <summary>
-        /// Properties are found here.
+        /// Interface for the hero class
         /// </summary>
+        #region Properties
         int TimesDied { get; set; }
         Boolean HasJumped { get; set; }
         Boolean TooManyDeaths { get; set; }

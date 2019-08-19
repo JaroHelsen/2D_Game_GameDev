@@ -9,6 +9,9 @@ namespace _2D_Game.MovingSprites.Interfaces
 {
     interface IEnemies
     {
+        /// <summary>
+        /// Interface for the enemy class
+        /// </summary>
         Vector2 Relocator { get; set; }
     }
 }
