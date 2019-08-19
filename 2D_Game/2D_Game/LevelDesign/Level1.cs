@@ -15,9 +15,10 @@ namespace _2D_Game.LevelDesign
 {
     class Level1: LevelFactoryWithEnemies, ILevelfactory_Enemies
     {
+        #region Constructor
         /// <summary>
-        /// Constructor for the level 1.
-        /// The tilearray is there so we can create the level with the create- and drawworld methods from the abstract level class
+        /// Constructor for the class.
+        /// Initializes and creates enemies, which type of tile is used where and starts the collision for both hero and enemies alike.
         /// </summary>
         /// <param name="_content"></param>
         /// <param name="myHero"></param>
@@ -140,7 +141,13 @@ namespace _2D_Game.LevelDesign
             heroCollisionChecker = new HeroCollisionWithEnemies(myHero, blokArray, enemies);
             enemyCollisionChecker = new EnemyCollision(blokArray, enemies);
         }
+        #endregion
 
+        #region Methods
+        /// <summary>
+        /// Creates the amount of enemies needed for this level with their specific texture and location spawning system.
+        /// </summary>
+        /// <param name="content"></param>
         public override void CreateEnemies(ContentManager content)
         {
             enemies = enemyCreator.GenerateEnemies(25, content.Load<Texture2D>("EnemyWalker"), new Vector2(0, -100), 12301);
@@ -149,5 +156,6 @@ namespace _2D_Game.LevelDesign
                 enemy.Relocator = enemy.Position;
             }
         }
+        #endregion  
     }
 }
