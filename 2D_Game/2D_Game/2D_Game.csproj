@@ -61,6 +61,7 @@
     <Compile Include="LevelDesign\LevelFactory.cs" />
     <Compile Include="CoreClasses\Collision.cs" />
     <Compile Include="LevelDesign\LevelFactoryWithEnemies.cs" />
+    <Compile Include="LevelDesign\LevelFactoryWithoutEnemies.cs" />
     <Compile Include="MovingSprites\Enemies.cs" />
     <Compile Include="MovingSprites\Hero.cs" />
     <Compile Include="MovingSprites\Interfaces\IEnemies.cs" />
