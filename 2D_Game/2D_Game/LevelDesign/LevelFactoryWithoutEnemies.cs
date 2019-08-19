@@ -12,6 +12,13 @@ namespace _2D_Game.LevelDesign
 {
     public abstract class LevelFactoryWithoutEnemies : LevelFactory
     {
+
+        #region Methods
+        /// <summary>
+        /// Overrides the LevelFactory method DrawWorld from its super LevelFactory.
+        /// Draws the blocks for the level that calls it.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void DrawWorld(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < tileArray.GetLength(0); i++)
@@ -26,6 +33,13 @@ namespace _2D_Game.LevelDesign
             }
         }
 
+        /// <summary>
+        /// Overrides the LevelFactory method DrawWorld from its super LevelFactory.
+        /// Checks for collisions for the hero inside the level.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="hero"></param>
+        /// <param name="content"></param>
         public override void CheckForCollision(GameTime gameTime, Hero hero, ContentManager content)
         {
             hero.Update(gameTime);
@@ -47,14 +61,22 @@ namespace _2D_Game.LevelDesign
             }
         }
 
+        /// <summary>
+        /// Called when the end of the level has been reached.
+        /// </summary>
+        /// <param name="content"></param>
         public override void EndOfLevel(ContentManager content)
         {
             LevelEnd = true;
         }
 
+        /// <summary>
+        /// Resets the level so that levelend is false.
+        /// </summary>
         public override void ResetLevel()
         {
             LevelEnd = false;
         }
+        #endregion
     }
 }
