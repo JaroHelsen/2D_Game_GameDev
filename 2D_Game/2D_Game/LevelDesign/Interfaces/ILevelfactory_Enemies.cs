@@ -10,6 +10,10 @@ namespace _2D_Game.LevelDesign.Interfaces
 {
     interface ILevelfactory_Enemies
     {
+        /// <summary>
+        /// Interface for the Enemies level factory
+        /// </summary>
+        /// <param name="content"></param>
         void CreateEnemies(ContentManager content);
         void ReturnEnemiesToPlaces();
     }
