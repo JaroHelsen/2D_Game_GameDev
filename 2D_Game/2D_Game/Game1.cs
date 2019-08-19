@@ -24,7 +24,7 @@ namespace _2D_Game
         public static int screenWidth;
         public static int screenHeight;
 
-        private Texture2D myBackground, menuImage, diedImage, wonImage;
+        private Texture2D myBackground, menuImage, diedImage, wonImage, controlsImage, infoImage;
         private Rectangle mainFrame;
 
         LevelFactoryWithEnemies level1, level2;
@@ -37,10 +37,13 @@ namespace _2D_Game
             level1,
             level2,
             Beginner,
+            Info,
+            Controls,
             GameWon,
             GameOver
         }
         GameState gameState = GameState.Menu;
+        GameState prevGameState = GameState.Menu;
 
         public Game1()
         {
@@ -86,6 +89,8 @@ namespace _2D_Game
             menuImage = Content.Load<Texture2D>("png/BGMenu");
             wonImage = Content.Load<Texture2D>("png/BGWON");
             diedImage = Content.Load<Texture2D>("png/BGDead");
+            controlsImage = Content.Load<Texture2D>("png/BGControls");
+            infoImage = Content.Load<Texture2D>("png/BGInfo");
 
             level1 = new Level1(Content, hero);
             level1.CreateLevel(Content);
@@ -133,15 +138,26 @@ namespace _2D_Game
                     {
                         hero.TimesDied = 0;
                         hero.Relocate();
+                        prevGameState = gameState;
                         gameState = GameState.level1;
                         //Hier dingen zetten die nu moeten laden (slechts 1x)
                     }
                     if (keyState.IsKeyDown(Keys.T))
                     {
-
                         hero.TimesDied = 0;
                         hero.Relocate();
+                        prevGameState = gameState;
                         gameState = GameState.Beginner;
+                    }
+                    if (keyState.IsKeyDown(Keys.I))
+                    {
+                        prevGameState = gameState;
+                        gameState = GameState.Info;
+                    }
+                    if (keyState.IsKeyDown(Keys.C))
+                    {
+                        prevGameState = gameState;
+                        gameState = GameState.Controls;
                     }
                     break;
                 case GameState.Beginner:
@@ -152,10 +168,12 @@ namespace _2D_Game
                     {
                         hero.TimesDied = 0;
                         hero.Relocate();
+                        prevGameState = gameState;
                         gameState = GameState.GameWon;
                     }
                     if (hero.TooManyDeaths)
                     {
+                        prevGameState = gameState;
                         gameState = GameState.GameOver;
                         hero.TimesDied = 0;
                         hero.TooManyDeaths = false;
@@ -171,11 +189,13 @@ namespace _2D_Game
                         hero.TimesDied = 0;
                         hero.Relocate();
                         level2.ReturnEnemiesToPlaces();
+                        prevGameState = gameState;
                         gameState = GameState.level2;
                         
                     }
                     if (hero.TooManyDeaths)
                     {
+                        prevGameState = gameState;
                         gameState = GameState.GameOver;
                         hero.TimesDied = 0;
                         hero.TooManyDeaths = false;
@@ -187,14 +207,34 @@ namespace _2D_Game
                     camera.Follow(hero.Position);
                     if (level2.LevelEnd)
                     {
+                        prevGameState = gameState;
                         gameState = GameState.GameWon;
 
                     }
                     if (hero.TooManyDeaths)
                     {
+                        prevGameState = gameState;
                         gameState = GameState.GameOver;
                         hero.TimesDied = 0;
                         hero.TooManyDeaths = false;
+                    }
+                    break;
+                case GameState.Info:
+                    camera.Follow(center);
+                    keyState = Keyboard.GetState();
+                    if (keyState.IsKeyDown(Keys.M))
+                    {
+                        prevGameState = gameState;
+                        gameState = GameState.Menu;
+                    }
+                    break;
+                case GameState.Controls:
+                    camera.Follow(center);
+                    keyState = Keyboard.GetState();
+                    if (keyState.IsKeyDown(Keys.M))
+                    {
+                        prevGameState = gameState;
+                        gameState = GameState.Menu;
                     }
                     break;
                 case GameState.GameOver:
@@ -202,11 +242,29 @@ namespace _2D_Game
                     keyState = Keyboard.GetState();
                     if (keyState.IsKeyDown(Keys.R))
                     {
-                        level1.ReturnEnemiesToPlaces();
-                        gameState = GameState.level1;
+                        switch (prevGameState)
+                        {
+                            case GameState.level1:
+                                level1.ReturnEnemiesToPlaces();
+                                prevGameState = gameState;
+                                gameState = GameState.level1;
+                                break;
+                            case GameState.level2:
+                                level2.ReturnEnemiesToPlaces();
+                                prevGameState = gameState;
+                                gameState = GameState.level2;
+                                break;
+                            case GameState.Beginner:
+                                prevGameState = gameState;
+                                gameState = GameState.Beginner;
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     if (keyState.IsKeyDown(Keys.M))
                     {
+                        prevGameState = gameState;
                         gameState = GameState.Menu;
                     }
                     break;
@@ -215,11 +273,29 @@ namespace _2D_Game
                     keyState = Keyboard.GetState();
                     if (keyState.IsKeyDown(Keys.R))
                     {
-                        level1.ReturnEnemiesToPlaces();
-                        gameState = GameState.level1;
+                        switch (prevGameState)
+                        {
+                            case GameState.level1:
+                                level1.ReturnEnemiesToPlaces();
+                                prevGameState = gameState;
+                                gameState = GameState.level1;
+                                break;
+                            case GameState.level2:
+                                level2.ReturnEnemiesToPlaces();
+                                prevGameState = gameState;
+                                gameState = GameState.level2;
+                                break;
+                            case GameState.Beginner:
+                                prevGameState = gameState;
+                                gameState = GameState.Beginner;
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     if (keyState.IsKeyDown(Keys.M))
                     {
+                        prevGameState = gameState;
                         gameState = GameState.Menu;
                         //Hier dingen zetten die nu moeten laden (slechts 1x)
                     }
@@ -266,6 +342,18 @@ namespace _2D_Game
                     level2.DrawWorld(spriteBatch);
                     hero.Draw(spriteBatch);
 
+                    spriteBatch.End();
+                    break;
+                case GameState.Info:
+                    spriteBatch.Begin(transformMatrix: camera.Transform);
+
+                    spriteBatch.Draw(infoImage, mainFrame, Color.AliceBlue);
+                    spriteBatch.End();
+                    break;
+                case GameState.Controls:
+                    spriteBatch.Begin(transformMatrix: camera.Transform);
+
+                    spriteBatch.Draw(controlsImage, mainFrame, Color.AliceBlue);
                     spriteBatch.End();
                     break;
                 case GameState.GameWon:
