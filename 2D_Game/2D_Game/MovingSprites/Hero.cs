@@ -166,9 +166,7 @@ namespace _2D_Game.MovingSprites
         /// </summary>
         public override void HasDied()
         {
-            Console.WriteLine("DOODGEGAAN:");
             TimesDied += 1;
-            Console.WriteLine(TimesDied);
             if (TimesDied >= 3)
             {
                 TooManyDeaths = true;
@@ -182,6 +180,9 @@ namespace _2D_Game.MovingSprites
 
         }
 
+        /// <summary>
+        /// Relocates the hero to it's starting position, orientation and texture.
+        /// </summary>
         public override void Relocate()
         {
             Position = relocator;
