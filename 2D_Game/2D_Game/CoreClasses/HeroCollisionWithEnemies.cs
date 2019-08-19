@@ -11,10 +11,23 @@ namespace _2D_Game.CoreClasses
 {
     class HeroCollisionWithEnemies : Collision
     {
+        #region Constructor
+        /// <summary>
+        /// Constructor for the class for it's super.
+        /// </summary>
+        /// <param name="_hero"></param>
+        /// <param name="blokArray"></param>
+        /// <param name="_enemy"></param>
         public HeroCollisionWithEnemies(Hero _hero, Blok[,] blokArray, List<Enemies> _enemy) : base(_hero, blokArray, _enemy)
         {
         }
+        #endregion
 
+        #region Methods
+        /// <summary>
+        /// Checks for collision between the hero , environment and enemies.
+        /// Calls the appropriate methods if the hero has died or has killed an enemy.
+        /// </summary>
         public override void CheckCollision()
         {
             onPlat = false;
@@ -134,5 +147,6 @@ namespace _2D_Game.CoreClasses
                 Auwch = false;
             }
         }
+        #endregion
     }
 }
