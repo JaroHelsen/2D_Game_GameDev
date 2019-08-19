@@ -45,7 +45,6 @@
     <Compile Include="Animations\AnimationFrame.cs" />
     <Compile Include="Animations\AnimationMotion.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\Controls.cs" />
     <Compile Include="CoreClasses\Camera.cs" />
     <Compile Include="CoreClasses\EnemyCollision.cs" />
