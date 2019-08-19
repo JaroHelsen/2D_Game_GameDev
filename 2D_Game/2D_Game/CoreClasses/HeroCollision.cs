@@ -11,11 +11,23 @@ namespace _2D_Game.CoreClasses
 {
     class HeroCollision : Collision
     {
+        #region Constructor
+        /// <summary>
+        /// Constructor for the class
+        /// </summary>
+        /// <param name="_hero"></param>
+        /// <param name="blokArray"></param>
         public HeroCollision(Hero _hero, Blok[,] blokArray): base(_hero,  blokArray)
         {
             
         }
+        #endregion
 
+        #region Methods
+        /// <summary>
+        /// Checks for collision between the hero and its environment.
+        /// Calls the appropriate methods if the hero dies.
+        /// </summary>
         public override void CheckCollision()
         {
             //Console.WriteLine("word ik opgeroepen?");
@@ -124,5 +136,6 @@ namespace _2D_Game.CoreClasses
                 Auwch = false;
             }
         }
+        #endregion
     }
 }
