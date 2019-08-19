@@ -15,6 +15,13 @@ namespace _2D_Game.LevelDesign
 {
     class Level2 : LevelFactoryWithEnemies, ILevelfactory_Enemies
     {
+        #region Constructor
+        /// <summary>
+        /// Constructor for the class.
+        /// Initializes and creates enemies, which type of tile is used where and starts the collision for both hero and enemies alike.
+        /// </summary>
+        /// <param name="_content"></param>
+        /// <param name="myHero"></param>
         public Level2(ContentManager _content, Hero myHero )
         {
 
@@ -135,59 +142,13 @@ namespace _2D_Game.LevelDesign
             heroCollisionChecker = new HeroCollisionWithEnemies(myHero, blokArray, enemies);
             enemyCollisionChecker = new EnemyCollision(blokArray, enemies);
         }
+        #endregion
 
-        public override void DrawWorld(SpriteBatch spriteBatch)
-        {
-            for (int i = 0; i < tileArray.GetLength(0); i++)
-            {
-                for (int j = 0; j < tileArray.GetLength(1); j++)
-                {
-                    if (blokArray[i, j] != null)
-                    {
-                        blokArray[i, j].Draw(spriteBatch);
-                    }
-                }
-            }
-            foreach (Enemies enemy in enemies)
-            {
-                enemy.Draw(spriteBatch);
-            }
-        }
-
-        public override void CheckForCollision(GameTime gameTime, Hero hero, ContentManager content)
-        {
-            hero.Update(gameTime);
-            foreach (Enemies enemy in enemies)
-            {
-                enemy.Update(gameTime);
-            }
-
-            heroCollisionChecker.CheckCollision();
-            enemyCollisionChecker.CheckCollision();
-
-            for (int i = enemies.Count - 1; i >= 0; i--)
-            {
-                if (enemies[i].Health == 0)
-                {
-                    enemies[i].Position.X = -1000;
-                }
-            }
-            foreach (Blok blok in blokArray)
-            {
-                if (blok != null)
-                {
-                    if (blok.FinishLine)
-                    {
-                        Console.WriteLine("This is the end");
-                        Console.WriteLine("-------------------------------------------------------------------------");
-                        Console.WriteLine("");
-                        EndOfLevel(content);
-                    }
-                }
-
-            }
-        }
-
+        #region Methods
+        /// <summary>
+        /// Creates the amount of enemies needed for this level with their specific texture and location spawning system.
+        /// </summary>
+        /// <param name="content"></param>
         public override void CreateEnemies(ContentManager content)
         {
             enemies = enemyCreator.GenerateEnemies(30, content.Load<Texture2D>("EnemyWalker"), new Vector2(0, -100), 12301);
@@ -196,5 +157,6 @@ namespace _2D_Game.LevelDesign
                 enemy.Relocator = enemy.Position;
             }
         }
+        #endregion
     }
 }
